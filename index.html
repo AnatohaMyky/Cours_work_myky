@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хотинський опорний академічний ліцей</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Навігаційна панель -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="images/Logo_v2.svg" alt="Логотип" width="96" height="48" class="rounded">
+                <div class="split-text ms-2 fw-bold">Хотинський опорний <br> академічний ліцей</div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="news.html">Новини</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="documentsDropdown" role="button">
+                            Установчі документи
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button">
+                            Про нас
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                            <li><a class="dropdown-item" href="#">Загальна інформація</a></li>
+                            <li><a class="dropdown-item" href="#">Адміністрація</a></li>
+                            <li><a class="dropdown-item" href="#">Педагогічний колектив</a></li>
+                            <li><a class="dropdown-item" href="#">Органи громадського врядування</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="participantsDropdown" role="button">
+                            Учасникам освітнього процесу
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="participantsDropdown">
+                            <li><a class="dropdown-item" href="#">Педагогічним працівникам</a></li>
+                            <li><a class="dropdown-item" href="#">Батькам</a></li>
+                            <li><a class="dropdown-item" href="#">Здобувачам освіти</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <button id="theme-toggle" class="btn btn-outline-light ms-3 rounded-circle p-2">
+                    🌙
+                </button>
+                <button id="toggle-grayscale">Ч/Б режим</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основний контент -->
+    <div class="main-content">
+        <div class="container mt-4">
+            <h1 class="fade-in header-values">Ласкаво просимо!</h1>
+            <p class="fade-in header-values">Ми Хотинський опорний акадамічний ліцей</p>
+
+            <!-- Місія -->
+            <section class="my-5 fade-in">
+                <h2 class="header-values">Наша місія</h2>
+                <p class="header-values">Будуємо майбутнє сьогодні <br>
+                    Забезпечуємо учням можливості для розвитку їх потенціалу, використовуючи сучасні методи
+                    навчання. Виховуємо самодисципліну та цілеспрямованість до досягнення цілей. Кожен наш учень
+                    успішний! Успіх наших дітей - наш успіх!</p>
+            </section>
+
+            <!-- Наші цінності -->
+            <h2 class="header-values fade-in">Наші цінності</h2>
+
+            <div id="carouselExampleControls" class="carousel slide fade-in" data-bs-ride="carousel"
+                data-bs-interval="9000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="images/1.png" class="d-block w-100" alt="Чесність">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/2.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/3.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/4.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/5.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/6.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/7.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/8.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/9.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/10.png" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Наступний</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Попередній</span>
+                </button>
+            </div>
+
+            <!-- <div>
+                <iframe width="100%" height="600" src="https://client.rozklad.org/files/rozklad/rr/r_2142.html"></iframe>
+            </div> -->
+
+            <!-- Переваги -->
+            <section class="my-5 fade-in">
+                <h2 class="header-values">Наші переваги</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>СЕРЕДОВИЩЕ</h4>
+                        <p>сучасна інфраструктура, зручне розташування, укриття, обладнані технологіями класні
+                            аудиторії, сучасна їдальня, зручний спортивний майданчик
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>ОСВІТА</h4>
+                        <p>широкий спектр дисциплін, підсилення, профілізація предметів та учителі-новатори, що
+                            допомагають розвивати креативність, логічне мислення й творчий потенціал дитини </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>ЗАЛУЧЕНІСТЬ</h4>
+                        <p>учні, їхні батьки та учителі є рівноправними учасниками освітнього процесу, які
+                            спільно беруть участь у його плануванні, організації, удосконаленні та впровадженні
+                            різних освітніх ініціатив.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="news-container">
+            <div class="news-item">
+                <img class="news-img" src="images/news_1.jpg" alt="">
+                <div class="news-content">
+                    <p>В рамках партнерства між містом Хотин (Україна) та містом Тельтов (Німеччина) Хотинська міська
+                        рада відкриває унікальний проект Міжнародної співпраці між закладами освіти України та
+                        Німеччини! </p>
+                    <a href="#">Детальніше</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <img class="news-img" src="images/news_2.jpg" alt="">
+                <div class="news-content">
+                    <p>Сьогодні в нашому ліцеї відбулися заходи, присвячені вшануванню пам’яті Героїв Крут – юнаків, які
+                        29 січня 1918 року стали на захист української державності. Учні разом із вчителями згадали
+                        подвиг молодих Героїв, які ціною власного життя затримали наступ більшовицької армії на Київ.
+                    </p>
+                    <a href="#">Детальніше</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <img class="news-img" src="images/news_3.jpg" alt="">
+                <div class="news-content">
+                    <p>Учасники освітнього процесу Хотинського опорного академічного ліцею висловлюють вдячність нашим
+                        захисникам – за їхню мужність, відвагу та незламність. Подяка від штурмового підрозділу Морської
+                        піхоти України і подарунок, цей прапор, для нас – більше, ніж просто символ.</p>
+                    <a href="#">Детальніше</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <img class="news-img" src="images/news_4.jpg" alt="">
+                <div class="news-content">
+                    <p>💙💛 День Соборності України: єдність, за яку боремось щодня
+                        Сьогодні ми усією ліцейною родиною відзначали День Соборності України — свято, яке нагадує нам
+                        про незламність, єдність і віру в силу українського народу.
+                    </p>
+                    <a href="#">Детальніше</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Стрілочка повернення на верх сторінки -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+
+    <!-- Футер -->
+    <footer class="footer bg-dark text-white py-4">
+        <div class="container">
+            <div class="supconteiner d-flex justify-content-around">
+                <div class="col-md-6">
+                    <h5>Контакти</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            <span class="map-link"
+                                data-address="вулиця Івана Франка, 8, Хотин, Чернівецька область, 60000">Місто Хотин,
+                                вулиця Франка
+                                І. 8/А</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope me-2"></i>
+                            <span class="copy-text"
+                                data-copy="khotynacademiclyceum@gmail.com">khotynacademiclyceum@gmail.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone me-2"></i>
+                            <span class="copy-text" data-copy="+380660107072">+380 660 107 072</span>
+                            <br> Директорка закладу Людмила Микитюк
+                        </li>
+                    </ul>
+                    <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+                        Зв'яжіться з нами
+                    </button>
+                </div>
+
+                <div class="col-md-6">
+                    <h5>Графік роботи</h5>
+                    <ul class="list-unstyled">
+                        <li>Понеділок - П'ятниця: 8:00 - 18:15</li>
+                        <li>Субота - Неділя: Вихідні</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5>Соціальні мережі</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.facebook.com/khotynacademiclyceum?locale=uk_UA"
+                                class="text-white text-decoration-none social-link"><i
+                                    class="fab fa-facebook me-2"></i>Facebook</a></li>
+                        <li><a href="https://www.instagram.com/leaders_khotynacademiclyceum?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                class="text-white text-decoration-none social-link"><i
+                                    class="fab fa-instagram me-2"></i>Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@leaders_khotynozzso?is_from_webapp=1&sender_device=pc"
+                                class="text-white text-decoration-none social-link"><i
+                                    class="fab fa-tiktok me-2"></i>Tik Tok</a></li>
+                        <li><a href="https://www.youtube.com/@%D0%A5%D0%BE%D1%82%D0%B8%D0%BD%D1%81%D1%8C%D0%BA%D0%B8%D0%B9%D0%BE%D0%BF%D0%BE%D1%80%D0%BD%D0%B8%D0%B9%D0%B0%D0%BA%D0%B0%D0%B4%D0%B5%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%B9%D0%BB%D1%96"
+                                class="text-white text-decoration-none social-link"><i
+                                    class="fab fa-youtube me-2"></i>YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальне вікно -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="feedbackModalLabel">Напишіть нам</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="6301ec0e-14c4-4e40-8ba8-74bec1b11524">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Ім'я</label>
+                            <input type="text" name="name" class="form-control" required
+                                placeholder="Введіть Ваше ім'я..." autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" required
+                                placeholder="Введіть вашу електронну адресу..." autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="fa-phone" class="form-label">Номер телефону</label>
+                            <input type="number" name="number" class="form-control" required
+                                placeholder="Введіть номер телефону..." autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Повідомлення</label>
+                            <textarea name="message" class="form-control" rows="3" required
+                                placeholder="Введіть ваше повідомлення..." autocomplete="off"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Надіслати</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((el, index) => {
+                el.classList.add(`delay-${index + 1}`);
+            });
+        });
+    </script>
+
+    <script>
+        // Показати стрілочку при прокрутці вниз
+        window.addEventListener('scroll', function () {
+            const backToTopButton = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        // Прокрутка до верху сторінки при натисканні на стрілочку
+        document.querySelector('.back-to-top').addEventListener('click', function (event) {
+            event.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Функція копіювання тексту
+            function copyToClipboard(text) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showTooltip("Скопійовано!");
+                }).catch(err => console.error("Помилка копіювання: ", err));
+            }
+
+            // Показ сповіщення про копіювання
+            function showTooltip(message) {
+                const tooltip = document.createElement("div");
+                tooltip.className = "custom-tooltip";
+                tooltip.innerText = message;
+                document.body.appendChild(tooltip);
+
+                setTimeout(() => {
+                    tooltip.classList.add("show");
+                    setTimeout(() => {
+                        tooltip.classList.remove("show");
+                        setTimeout(() => document.body.removeChild(tooltip), 300);
+                    }, 1500);
+                }, 10);
+            }
+
+            // Обробник натискання для копіювання тексту
+            document.querySelectorAll(".copy-text").forEach(element => {
+                element.addEventListener("click", function () {
+                    const textToCopy = this.getAttribute("data-copy");
+                    copyToClipboard(textToCopy);
+                });
+            });
+
+            // Обробник натискання для відкриття Google Maps
+            document.querySelector(".map-link").addEventListener("click", function () {
+                const address = encodeURIComponent(this.getAttribute("data-address"));
+                window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, "_blank");
+            });
+        });
+    </script>
+
+    <script>
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('.navbar');
+
+        window.addEventListener('scroll', function () {
+            let scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                // Прокручуємо вниз – приховуємо navbar
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                // Прокручуємо вгору – показуємо navbar
+                navbar.style.transform = 'translateY(0)';
+            }
+
+            lastScrollTop = scrollTop;
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const themeToggleBtn = document.getElementById("theme-toggle");
+            const body = document.body;
+
+            // Перевіряємо, чи є вже збережений режим у localStorage
+            if (localStorage.getItem("theme") === "dark") {
+                body.classList.add("dark-mode");
+                themeToggleBtn.textContent = "🌙";
+            }
+
+            themeToggleBtn.addEventListener("click", function () {
+                body.classList.toggle("dark-mode");
+
+                if (body.classList.contains("dark-mode")) {
+                    localStorage.setItem("theme", "dark");
+                    themeToggleBtn.textContent = "🌙"; // Іконка для світлого режиму
+                } else {
+                    localStorage.setItem("theme", "light");
+                    themeToggleBtn.textContent = "☀️"; // Іконка для темного режиму
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (localStorage.getItem("grayscale-active") === "true") {
+                document.body.classList.add("grayscale-active");
+            }
+
+            document.getElementById("toggle-grayscale").addEventListener("click", function () {
+                document.body.classList.toggle("grayscale-active");
+
+                if (document.body.classList.contains("grayscale-active")) {
+                    localStorage.setItem("grayscale-active", "true");
+                } else {
+                    localStorage.setItem("grayscale-active", "false");
+                }
+            });
+        });
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>

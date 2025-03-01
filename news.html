@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хотинський опорний академічний ліцей</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="d-flex">
+        <!-- Бічна панель -->
+        <nav id="sidebar" class="collapsed">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <img src="images/Logo_v2.svg" alt="Логотип" width="64" height="32"> <span class="sidebar-text">Хотинський ліцей</span>
+                </a>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">
+                        <i class="fas fa-home"></i> <span class="sidebar-text">На головну</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.html" class="nav-link">
+                        <i class="fas fa-user"></i> <span class="sidebar-text">Особистий кабінет</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="schedule.html" class="nav-link">
+                        <i class="fas fa-calendar"></i> <span class="sidebar-text">Розклад</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="materials.html" class="nav-link">
+                        <i class="fas fa-book"></i> <span class="sidebar-text">Навчальні матеріали</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="contacts.html" class="nav-link">
+                        <i class="fas fa-envelope"></i> <span class="sidebar-text">Контакти</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- <div class="sidebar-footer">
+                <a href="#" class="user">
+                    <img src="user.jpg" alt="Користувач" class="rounded-circle">
+                    <span class="sidebar-text">mdo</span>
+                </a>
+            </div> -->
+        </nav>
+
+        <!-- Основний контент -->
+        <div class="flex-grow-1">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container">
+                    <button id="toggleSidebar" class="btn btn-light me-2">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="images/Logo_v2.svg" alt="Логотип" width="96" height="48">
+                        Хотинський ліцей
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link" href="about.html">Про нас</a></li>
+                            <li class="nav-item"><a class="nav-link" href="news.html">Новини</a></li>
+                            <li class="nav-item"><a class="nav-link" href="documents.html">Установчі документи</a></li>
+                            <li class="nav-item"><a class="nav-link" href="forParticipants.html">Учасникам освітнього
+                                    процесу</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <script>
+                document.getElementById('toggleSidebar').addEventListener('click', function () {
+                    document.getElementById('sidebar').classList.toggle('collapsed');
+                });
+                const currentPage = window.location.pathname.split('/').pop();
+                const navLinks = document.querySelectorAll('.nav-link');
+        
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === currentPage) {
+                        link.classList.add('active');
+                    }
+                });
+        
+                document.addEventListener('click', function (event) {
+                    const sidebar = document.getElementById('sidebar');
+                    const toggleButton = document.getElementById('toggleSidebar');
+        
+                    if (!sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
+                        sidebar.classList.add('collapsed');
+                    }
+                });
+                document.addEventListener('DOMContentLoaded', function () {
+                    const currentPage = window.location.pathname.split('/').pop(); // Отримуємо ім'я поточної сторінки
+                    const navLinks = document.querySelectorAll('.nav-link'); // Отримуємо всі посилання в бічній панелі
+        
+                    navLinks.forEach(link => {
+                        const linkPage = link.getAttribute('href'); // Отримуємо href посилання
+                        if (linkPage === currentPage) {
+                            link.classList.add('active'); // Додаємо клас `active`, якщо посилання відповідає поточній сторінці
+                        } else {
+                            link.classList.remove('active'); // Видаляємо клас `active` з інших посилань
+                        }
+                    });
+                });
+            </script>
+        
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        </body>
+        
+        </html>
