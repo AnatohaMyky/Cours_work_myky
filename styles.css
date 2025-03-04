@@ -369,6 +369,7 @@ ul {
 .footer .btn {
     display: inline-block;
     margin-top: 10px;
+    font-size: 1rem;
 }
 
 @media (max-width: 768px) {
