@@ -13,32 +13,82 @@
 
 <body>
     <!-- Навігаційна панель -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="images/Logo_v2.svg" alt="Логотип" width="96" height="48">
-                <div class="split-text ms-2">Хотинський опорний <br> академічний ліцей</div>
+                <img src="images/Logo_v2.svg" alt="Логотип" width="96" height="48" class="rounded">
+                <div class="split-text ms-2 fw-bold">Хотинський опорний <br> академічний ліцей</div>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="materials.html"> Навчальні матеріали</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">Про нас</a></li>
                     <li class="nav-item"><a class="nav-link" href="news.html">Новини</a></li>
-                    <li class="nav-item"><a class="nav-link" href="documents.html">Установчі документи</a></li>
-                    <li class="nav-item"><a class="nav-link" href="forParticipants.html">Учасникам освітнього
-                            процесу</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="documentsDropdown" role="button">
+                            Документи
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="about.html" id="aboutDropdown" role="button">
+                            Про нас
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                            <li><a class="dropdown-item" href="#">Загальна інформація</a></li>
+                            <li><a class="dropdown-item" href="#">Адміністрація</a></li>
+                            <li><a class="dropdown-item" href="#">Педагогічний колектив</a></li>
+                            <li><a class="dropdown-item" href="#">Органи громадського врядування</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="forParticipants.html" id="participantsDropdown"
+                            role="button">
+                            Навчання
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="participantsDropdown">
+                            <li><a class="dropdown-item" href="#">Педагогічним працівникам</a></li>
+                            <li><a class="dropdown-item" href="#">Батькам</a></li>
+                            <li><a class="dropdown-item" href="#">Здобувачам освіти</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 🔹 Новий випадаючий пункт "Особливий функціонал" -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="specialFeaturesToggle" role="button">
+                            Особливий функціонал
+                        </a>
+                        <div class="dropdown-menu p-3" id="specialFeaturesDropdown">
+                            <div class="text-center">
+                                <div class="feature-buttons d-flex justify-content-center mb-2">
+                                    <button id="increase-font" class="btn font-size-btn">+A</button>
+                                    <button id="decrease-font" class="btn font-size-btn">−A</button>
+                                    <button id="reset-font" class="btn font-size-btn">A</button>
+                                </div>
+                                <button id="toggle-grayscale" class="btn btn-secondary w-100 mb-2">Ч/Б режим</button>
+                                <button id="toggle-dyslexia-font" class="btn btn-warning w-100 mb-2">Шрифт для
+                                    дислексії</button>
+                                <button id="theme-toggle" class="btn btn-outline-light w-100">🌙 Змінити тему</button>
+                            </div>
+                        </div>
+                    </li>
+
                 </ul>
             </div>
         </div>
     </nav>
-    <p>/</p>
-    <p>/</p>
+
     <div>
         <iframe width="100%" height="600" src="https://client.rozklad.org/files/rozklad/rr/r_2142.html"></iframe>
     </div>
+
+
+    <!-- Стрілочка повернення на верх сторінки -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+
 
     <!-- Футер -->
     <footer class="footer bg-dark text-white py-4">
@@ -47,12 +97,29 @@
                 <div class="col-md-6">
                     <h5>Контакти</h5>
                     <ul class="list-unstyled">
-                        <li><i class="fas fa-map-marker-alt me-2"></i> місто Хотин, <br> вулиця Франка І., 8/А
+                        <li>
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            <span class="map-link"
+                                data-address="вулиця Івана Франка, 8, Хотин, Чернівецька область, 60000">Місто Хотин,
+                                вулиця Франка
+                                І. 8/А</span>
                         </li>
-                        <li><i class="fas fa-phone me-2"></i> +380 660 107 072 <br> директорка закладу Людмила МИКИТЮК</li>
-                        <li><i class="fas fa-envelope me-2"></i> khotynacademiclyceum@gmail.com</li>
+                        <li>
+                            <i class="fas fa-envelope me-2"></i>
+                            <span class="copy-text"
+                                data-copy="khotynacademiclyceum@gmail.com">khotynacademiclyceum@gmail.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone me-2"></i>
+                            <span class="copy-text" data-copy="+380660107072">+380 660 107 072</span>
+                            <br> Директорка закладу Людмила Микитюк
+                        </li>
                     </ul>
+                    <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+                        Зв'яжіться з нами
+                    </button>
                 </div>
+
                 <div class="col-md-6">
                     <h5>Графік роботи</h5>
                     <ul class="list-unstyled">
@@ -63,26 +130,18 @@
                 <div class="col-md-6">
                     <h5>Соціальні мережі</h5>
                     <ul class="list-unstyled">
-                        <li>
-                            <a href="https://facebook.com" class="text-white text-decoration-none">
-                                <i class="fab fa-facebook me-2"></i>Facebook
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://instagram.com" class="text-white text-decoration-none">
-                                <i class="fab fa-instagram me-2"></i>Instagram
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com" class="text-white text-decoration-none">
-                                <i class="fab fa-tiktok me-2"></i>Tik Tok
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://youtube.com" class="text-white text-decoration-none">
-                                <i class="fab fa-youtube me-2"></i>YouTube
-                            </a>
-                        </li>
+                        <li><a href="https://www.facebook.com/khotynacademiclyceum?locale=uk_UA"
+                                class="text-white text-decoration-none social-link"><i
+                                    class="fab fa-facebook me-2"></i>Facebook</a></li>
+                        <li><a href="https://www.instagram.com/leaders_khotynacademiclyceum?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                class="text-white text-decoration-none social-link"><i
+                                    class="fab fa-instagram me-2"></i>Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@leaders_khotynozzso?is_from_webapp=1&sender_device=pc"
+                                class="text-white text-decoration-none social-link"><i
+                                    class="fab fa-tiktok me-2"></i>Tik Tok</a></li>
+                        <li><a href="https://www.youtube.com/@%D0%A5%D0%BE%D1%82%D0%B8%D0%BD%D1%81%D1%8C%D0%BA%D0%B8%D0%B9%D0%BE%D0%BF%D0%BE%D1%80%D0%BD%D0%B8%D0%B9%D0%B0%D0%BA%D0%B0%D0%B4%D0%B5%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%B9%D0%BB%D1%96"
+                                class="text-white text-decoration-none social-link"><i
+                                    class="fab fa-youtube me-2"></i>YouTube</a></li>
                     </ul>
                 </div>
             </div>
@@ -90,16 +149,52 @@
     </footer>
 
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const elements = document.querySelectorAll('.fade-in');
-            elements.forEach((el, index) => {
-                el.classList.add(`delay-${index + 1}`);
-            });
-        });
 
-    </script>
+    <!-- Модальне вікно -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="feedbackModalLabel">Напишіть нам</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="6301ec0e-14c4-4e40-8ba8-74bec1b11524">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Ім'я</label>
+                            <input type="text" name="name" class="form-control" required
+                                placeholder="Введіть Ваше ім'я..." autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" required
+                                placeholder="Введіть вашу електронну адресу..." autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="fa-phone" class="form-label">Номер телефону</label>
+                            <input type="number" name="number" class="form-control" required
+                                placeholder="Введіть номер телефону..." autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Повідомлення</label>
+                            <textarea name="message" class="form-control" rows="3" required
+                                placeholder="Введіть ваше повідомлення..." autocomplete="off"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Надіслати</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="scripts.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
 
 </html>
