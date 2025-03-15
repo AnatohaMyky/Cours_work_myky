@@ -9,10 +9,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="blickFixer.js"></script>
 </head>
 
 <body>
-    <!-- Навігаційна панель -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -53,31 +53,26 @@
                         </ul>
                     </li>
 
-                    <!-- 🔹 Новий випадаючий пункт "Особливий функціонал" -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="specialFeaturesToggle" role="button">
-                            Особливий функціонал
-                        </a>
-                        <div class="dropdown-menu p-3" id="specialFeaturesDropdown">
-                            <div class="text-center">
-                                <div class="feature-buttons d-flex justify-content-center mb-2">
-                                    <button id="increase-font" class="btn font-size-btn">+A</button>
-                                    <button id="decrease-font" class="btn font-size-btn">−A</button>
-                                    <button id="reset-font" class="btn font-size-btn">A</button>
-                                </div>
-                                <button id="toggle-grayscale" class="btn btn-secondary w-100 mb-2">Ч/Б режим</button>
-                                <button id="toggle-dyslexia-font" class="btn btn-warning w-100 mb-2">Шрифт для
-                                    дислексії</button>
-                                <button id="theme-toggle" class="btn btn-outline-light w-100">🌙 Змінити тему</button>
-                            </div>
-                        </div>
+                    <!-- Кнопка для відкриття другого рівня навігації -->
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light" id="toggleSecondaryNavbar">Особливий функціонал</button>
                     </li>
-
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- Другий рівень навігаційної панелі -->
+    <div id="secondaryNavbar" class="bg-secondary text-white p-3 collapse">
+        <div class="container d-flex flex-wrap justify-content-center">
+            <button id="increase-font" class="btn btn-light m-1">+A</button>
+            <button id="decrease-font" class="btn btn-light m-1">−A</button>
+            <button id="reset-font" class="btn btn-light m-1">A</button>
+            <button id="toggle-grayscale" class="btn btn-dark m-1">Ч/Б режим</button>
+            <button id="toggle-dyslexia-font" class="btn btn-warning m-1">Шрифт для дислексії</button>
+            <button id="theme-toggle" class="btn btn-outline-light m-1">🌙 Змінити тему</button>
+        </div>
+    </div>
 
 
     <!-- Основний контент -->

@@ -1,7 +1,7 @@
 /* General Styles */
-* {
+/* * {
     transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
-}
+} */
 
 @font-face {
     font-family: 'Inclusion UKR';
@@ -11,12 +11,17 @@
 }
 
 body {
+    transition: opacity 0.2s ease-in;
     max-width: 100%;
     background-color: var(--background-color);
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     font-size: 100%;
+}
+
+body.loaded {
+    opacity: 1;
 }
 
 .dyslexia-mode {
@@ -839,23 +844,35 @@ ul {
 }
 
 .news-title a {
-    display: inline;  /* Робить посилання таким, як звичайний текст */
-    background: none; /* Прибирає фон */
-    padding: 0;       /* Прибирає внутрішні відступи */
-    text-decoration: none; /* Якщо потрібно, прибирає підкреслення */
-    color: #007bff; /* Або інший синій колір, що підходить дизайну */
-    font-weight: bold; /* Якщо потрібно, зробити жирним */
+    display: inline;
+    /* Робить посилання таким, як звичайний текст */
+    background: none;
+    /* Прибирає фон */
+    padding: 0;
+    /* Прибирає внутрішні відступи */
+    text-decoration: none;
+    /* Якщо потрібно, прибирає підкреслення */
+    color: #007bff;
+    /* Або інший синій колір, що підходить дизайну */
+    font-weight: bold;
+    /* Якщо потрібно, зробити жирним */
 }
 
 
 
 .news-title a:hover {
-    display: inline;  /* Робить посилання таким, як звичайний текст */
-    background: none; /* Прибирає фон */
-    padding: 0;       /* Прибирає внутрішні відступи */
-    text-decoration: none; /* Якщо потрібно, прибирає підкреслення */
-    color: var(--nav-link-hover); /* Або інший синій колір, що підходить дизайну */
-    font-weight: bold; /* Якщо потрібно, зробити жирним */
+    display: inline;
+    /* Робить посилання таким, як звичайний текст */
+    background: none;
+    /* Прибирає фон */
+    padding: 0;
+    /* Прибирає внутрішні відступи */
+    text-decoration: none;
+    /* Якщо потрібно, прибирає підкреслення */
+    color: var(--nav-link-hover);
+    /* Або інший синій колір, що підходить дизайну */
+    font-weight: bold;
+    /* Якщо потрібно, зробити жирним */
 }
 
 
@@ -909,4 +926,22 @@ ul {
     .news-read-more {
         align-self: center;
     }
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-toggle:focus+.dropdown-content,
+.dropdown-content:focus-within {
+    display: block;
 }

@@ -1,10 +1,10 @@
 
-document.addEventListener("DOMContentLoaded", function () {
-    const elements = document.querySelectorAll('.fade-in');
-    elements.forEach((el, index) => {
-        el.classList.add(`delay-${index + 1}`);
-    });
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//     const elements = document.querySelectorAll('.fade-in');
+//     elements.forEach((el, index) => {
+//         el.classList.add(`delay-${index + 1}`);
+//     });
+// });
 
 // Показати стрілочку при прокрутці вниз
 window.addEventListener('scroll', function () {
@@ -83,26 +83,35 @@ window.addEventListener('scroll', function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     const themeToggleBtn = document.getElementById("theme-toggle");
-    const body = document.body;
+    const html = document.documentElement; // Змінюємо body на html
 
-    // Перевіряємо, чи є вже збережений режим у localStorage
-    if (localStorage.getItem("theme") === "dark") {
-        body.classList.add("dark-mode");
-        themeToggleBtn.textContent = "🌙";
+    function updateThemeIcon(isDark) {
+        themeToggleBtn.textContent = isDark ? "🌙" : "☀️";
     }
 
-    themeToggleBtn.addEventListener("click", function () {
-        body.classList.toggle("dark-mode");
+    // Перевіряємо стан теми при завантаженні
+    let isDark = localStorage.getItem("theme") === "dark";
+    html.classList.toggle("dark-mode", isDark);
+    updateThemeIcon(isDark);
 
-        if (body.classList.contains("dark-mode")) {
-            localStorage.setItem("theme", "dark");
-            themeToggleBtn.textContent = "🌙"; // Іконка для світлого режиму
-        } else {
-            localStorage.setItem("theme", "light");
-            themeToggleBtn.textContent = "☀️"; // Іконка для темного режиму
-        }
+    // Обробник кліку для перемикання теми
+    themeToggleBtn.addEventListener("click", function () {
+        isDark = !isDark;
+        html.classList.toggle("dark-mode", isDark);
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+        updateThemeIcon(isDark);
     });
 });
+
+// Додаємо класи перед завантаженням сторінки, щоб уникнути "спалаху"
+(function () {
+    if (localStorage.getItem("grayscale-active") === "true") {
+        document.body.classList.add("grayscale-active");
+    }
+    if (localStorage.getItem("dyslexiaMode") === "enabled") {
+        document.body.classList.add("dyslexia-mode");
+    }
+})();
 
 document.addEventListener("DOMContentLoaded", function () {
     const body = document.body;
@@ -110,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const decreaseFontBtn = document.getElementById("decrease-font");
     const resetFontBtn = document.getElementById("reset-font");
     const grayscaleToggleBtn = document.getElementById("toggle-grayscale");
+    const dyslexiaButton = document.getElementById("toggle-dyslexia-font");
 
     let currentFontSize = parseFloat(localStorage.getItem("font-size")) || 100;
     const minFontSize = 80;
@@ -139,22 +149,29 @@ document.addEventListener("DOMContentLoaded", function () {
         applyFontSize(currentFontSize);
     });
 
-    if (localStorage.getItem("grayscale-active") === "true") {
-        body.classList.add("grayscale-active");
-    }
+    let isGrayscale = localStorage.getItem("grayscale-active") === "true";
+    body.classList.toggle("grayscale-active", isGrayscale);
 
     grayscaleToggleBtn.addEventListener("click", function () {
-        body.classList.toggle("grayscale-active");
+        isGrayscale = !isGrayscale;
+        body.classList.toggle("grayscale-active", isGrayscale);
+        localStorage.setItem("grayscale-active", isGrayscale ? "true" : "false");
+    });
 
-        if (body.classList.contains("grayscale-active")) {
-            localStorage.setItem("grayscale-active", "true");
-        } else {
-            localStorage.setItem("grayscale-active", "false");
-        }
+    let isDyslexiaMode = localStorage.getItem("dyslexiaMode") === "enabled";
+    body.classList.toggle("dyslexia-mode", isDyslexiaMode);
+    dyslexiaButton.classList.toggle("active", isDyslexiaMode);
+
+    dyslexiaButton.addEventListener("click", function () {
+        isDyslexiaMode = !isDyslexiaMode;
+        body.classList.toggle("dyslexia-mode", isDyslexiaMode);
+        dyslexiaButton.classList.toggle("active", isDyslexiaMode);
+        localStorage.setItem("dyslexiaMode", isDyslexiaMode ? "enabled" : "disabled");
     });
 
     applyFontSize(currentFontSize);
 });
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const specialFeaturesToggle = document.getElementById("specialFeaturesToggle");
@@ -205,6 +222,16 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("dyslexiaMode", "disabled");
         }
     });
+});
+
+
+document.getElementById("toggleSecondaryNavbar").addEventListener("click", function () {
+    let secondaryNavbar = document.getElementById("secondaryNavbar");
+    if (secondaryNavbar.classList.contains("show")) {
+        secondaryNavbar.classList.remove("show");
+    } else {
+        secondaryNavbar.classList.add("show");
+    }
 });
 
 
