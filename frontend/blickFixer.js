@@ -11,8 +11,3 @@
         document.documentElement.classList.add("grayscale-active");
     }
 })();
-(function () {
-    if (localStorage.getItem("dyslexia-font-active") === "true") {
-        document.documentElement.classList.add("dyslexia-font-active");
-    }
-})();

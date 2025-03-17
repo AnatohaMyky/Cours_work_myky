@@ -1,4 +1,3 @@
-
 // document.addEventListener("DOMContentLoaded", function () {
 //     const elements = document.querySelectorAll('.fade-in');
 //     elements.forEach((el, index) => {
@@ -62,23 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const address = encodeURIComponent(this.getAttribute("data-address"));
         window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, "_blank");
     });
-});
-
-let lastScrollTop = 0;
-const navbar = document.querySelector('.navbar');
-
-window.addEventListener('scroll', function () {
-    let scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-    if (scrollTop > lastScrollTop) {
-        // Прокручуємо вниз – приховуємо navbar
-        navbar.style.transform = 'translateY(-100%)';
-    } else {
-        // Прокручуємо вгору – показуємо navbar
-        navbar.style.transform = 'translateY(0)';
-    }
-
-    lastScrollTop = scrollTop;
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -172,7 +154,6 @@ document.addEventListener("DOMContentLoaded", function () {
     applyFontSize(currentFontSize);
 });
 
-
 document.addEventListener("DOMContentLoaded", function () {
     const specialFeaturesToggle = document.getElementById("specialFeaturesToggle");
     const specialFeaturesDropdown = document.getElementById("specialFeaturesDropdown");
@@ -201,30 +182,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
-document.addEventListener("DOMContentLoaded", function () {
-    const dyslexiaButton = document.getElementById("toggle-dyslexia-font");
-
-    // Перевіряємо, чи був режим увімкнений раніше
-    if (localStorage.getItem("dyslexiaMode") === "enabled") {
-        document.body.classList.add("dyslexia-mode");
-        dyslexiaButton.classList.add("active");
-    }
-
-    dyslexiaButton.addEventListener("click", function () {
-        document.body.classList.toggle("dyslexia-mode");
-        this.classList.toggle("active");
-
-        // Зберігаємо стан у localStorage
-        if (document.body.classList.contains("dyslexia-mode")) {
-            localStorage.setItem("dyslexiaMode", "enabled");
-        } else {
-            localStorage.setItem("dyslexiaMode", "disabled");
-        }
-    });
-});
-
-
 document.getElementById("toggleSecondaryNavbar").addEventListener("click", function () {
     let secondaryNavbar = document.getElementById("secondaryNavbar");
     if (secondaryNavbar.classList.contains("show")) {
@@ -233,6 +190,3 @@ document.getElementById("toggleSecondaryNavbar").addEventListener("click", funct
         secondaryNavbar.classList.add("show");
     }
 });
-
-
-

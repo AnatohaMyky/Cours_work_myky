@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: 'Inclusion UKR';
-    src: url('inclusion.ukr.woff') format('woff');
+    src: url('/assets/inclusion.ukr.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -213,6 +213,66 @@ body.grayscale-active::before {
 }
 
 /* Стилізація кнопок особливого функціоналу */
+
+#secondaryNavbar {
+    background: var(--navbar-bg);
+    box-shadow: 0 4px 6px var(--box-shadow);
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: transform 0.3s ease;
+}
+
+#secondaryNavbar.show {
+    max-height: 500px;
+    /* Достатньо велике значення, щоб покрити весь контент */
+    opacity: 1;
+}
+
+/* General Button Styles for Second-Level Navbar */
+#secondaryNavbar .btn {
+    background-color: var(--button-color);
+    /* Align with general button color */
+    color: white;
+    border: 1px solid var(--button-color);
+    border-radius: 8px;
+    /* Rounded edges for consistency */
+    padding: 8px 16px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+#secondaryNavbar .btn:hover {
+    background-color: var(--button-color-hover);
+    /* Hover effect */
+    color: white;
+    transform: scale(1.05);
+    /* Slight scaling effect */
+}
+
+#secondaryNavbar .btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(217, 221, 228, 0.817);
+    /* Focus effect for better accessibility */
+}
+
+
+#secondaryNavbar .btn:disabled {
+    background-color: #b5b5b5;
+    /* Disabled button style */
+    color: #888;
+    border: 1px solid #d6d6d6;
+    cursor: not-allowed;
+}
+
+#secondaryNavbar .btn+.btn {
+    margin-left: 10px;
+    /* Space between buttons */
+}
+
+
+
 .feature-buttons .btn {
     background-color: #6c757d;
     /* Світло-сірий фон */
