@@ -75,15 +75,13 @@
         </div>
     </div>
 
-    <section class="news-section py-5">
+    <!-- <section class="news-section py-5">
         <div class="container news-section-container">
             <h2 class="text-center mb-4">Останні новини</h2>
             <div class="news-item d-flex flex-column flex-md-row shadow-sm p-3 rounded">
-                <!-- Зображення -->
                 <div class="news-image-container">
                     <img src="/assets/images/news_1.jpg" alt="Зображення новини" class="news-image img-fluid rounded">
                 </div>
-                <!-- Контент -->
                 <div class="news-content ps-md-3">
                     <h3 class="news-title">
                         <a href="#" class="news-link">Співпраця з Німеччиною!</a>
@@ -101,11 +99,9 @@
                 </div>
             </div>
             <div class="news-item d-flex flex-column flex-md-row shadow-sm p-3 rounded">
-                <!-- Зображення -->
                 <div class="news-image-container">
                     <img src="/assets/images/news_2.jpg" alt="Зображення новини" class="news-image img-fluid rounded">
                 </div>
-                <!-- Контент -->
                 <div class="news-content ps-md-3">
                     <h3 class="news-title">
                         <a href="#" class="news-link">Заходи до дня Героїв Крут</a>
@@ -124,11 +120,9 @@
                 </div>
             </div>
             <div class="news-item d-flex flex-column flex-md-row shadow-sm p-3 rounded">
-                <!-- Зображення -->
                 <div class="news-image-container">
                     <img src="/assets/images/news_3.jpg" alt="Зображення новини" class="news-image img-fluid rounded">
                 </div>
-                <!-- Контент -->
                 <div class="news-content ps-md-3">
                     <h3 class="news-title">
                         <a href="#" class="news-link">Подяка від штурмового підрозділу Морської
@@ -147,11 +141,9 @@
                 </div>
             </div>
             <div class="news-item d-flex flex-column flex-md-row shadow-sm p-3 rounded">
-                <!-- Зображення -->
                 <div class="news-image-container">
                     <img src="/assets/images/news_4.jpg" alt="Зображення новини" class="news-image img-fluid rounded">
                 </div>
-                <!-- Контент -->
                 <div class="news-content ps-md-3">
                     <h3 class="news-title">
                         <a href="#" class="news-link">Святкування дня Соборності України</a>
@@ -168,6 +160,26 @@
                     <a href="#" class="news-read-more">Читати далі ></a>
                 </div>
             </div>
+        </div>
+    </section> -->
+
+    <section class="news-section py-5">
+        <div class="container news-section-container">
+            <h2 class="text-center mb-4">Останні новини</h2>
+            <div id="news-container">
+                <!-- Новини будуть завантажуватись тут динамічно -->
+            </div>
+            <!-- Пагінація -->
+            <nav>
+                <ul class="pagination justify-content-center mt-4">
+                    <li class="page-item">
+                        <button id="prev-page" class="page-link">Попередня</button>
+                    </li>
+                    <li class="page-item">
+                        <button id="next-page" class="page-link">Наступна</button>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </section>
 

@@ -154,34 +154,6 @@ document.addEventListener("DOMContentLoaded", function () {
     applyFontSize(currentFontSize);
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const specialFeaturesToggle = document.getElementById("specialFeaturesToggle");
-    const specialFeaturesDropdown = document.getElementById("specialFeaturesDropdown");
-
-    // Відкривати меню при наведенні
-    specialFeaturesToggle.addEventListener("mouseenter", function () {
-        specialFeaturesDropdown.classList.add("show");
-    });
-
-    // Закривати меню при виході мишки з кнопки або самого меню
-    specialFeaturesToggle.addEventListener("mouseleave", function () {
-        setTimeout(() => {
-            if (!specialFeaturesDropdown.matches(":hover")) {
-                specialFeaturesDropdown.classList.remove("show");
-            }
-        }, 200);
-    });
-
-    specialFeaturesDropdown.addEventListener("mouseleave", function () {
-        specialFeaturesDropdown.classList.remove("show");
-    });
-
-    // Переконуємося, що меню залишається відкритим, якщо курсор над ним
-    specialFeaturesDropdown.addEventListener("mouseenter", function () {
-        specialFeaturesDropdown.classList.add("show");
-    });
-});
-
 document.getElementById("toggleSecondaryNavbar").addEventListener("click", function () {
     let secondaryNavbar = document.getElementById("secondaryNavbar");
     if (secondaryNavbar.classList.contains("show")) {
@@ -189,4 +161,75 @@ document.getElementById("toggleSecondaryNavbar").addEventListener("click", funct
     } else {
         secondaryNavbar.classList.add("show");
     }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const newsContainer = document.getElementById("news-container");
+    const prevButton = document.getElementById("prev-page");
+    const nextButton = document.getElementById("next-page");
+
+    let newsData = [];
+    let currentPage = 1;
+    const itemsPerPage = 4;
+
+    // Функція для відображення новин на сторінці
+    function displayNews() {
+        console.log("Відображення новин...");
+        newsContainer.innerHTML = "";
+        let start = (currentPage - 1) * itemsPerPage;
+        let end = start + itemsPerPage;
+        let paginatedNews = newsData.slice(start, end);
+    
+        let newsHTML = '';
+        paginatedNews.forEach(news => {
+            newsHTML += `
+                <div class="news-item d-flex flex-column flex-md-row shadow-sm p-3 rounded">
+                    <div class="news-image-container">
+                        <img src="${news.image}" alt="Зображення новини" class="news-image img-fluid rounded">
+                    </div>
+                    <div class="news-content ps-md-3">
+                        <h3 class="news-title">
+                            <a href="${news.link}" class="news-link">${news.title}</a>
+                        </h3>
+                        <p class="news-meta">
+                            <i class="fa fa-calendar"></i> ${news.date}
+                            <span class="news-category"><i class="fa fa-bookmark"></i> ${news.category}</span>
+                        </p>
+                        <p class="news-description">${news.description}</p>
+                        <a href="${news.link}" class="news-read-more">Читати далі ></a>
+                    </div>
+                </div>
+            `;
+        });
+        newsContainer.innerHTML = newsHTML;
+    
+        prevButton.disabled = currentPage === 1;
+        nextButton.disabled = currentPage >= Math.ceil(newsData.length / itemsPerPage);
+    }
+       // Обробка кнопки "Попередня"
+    prevButton.addEventListener("click", function () {
+        if (currentPage > 1) {
+            currentPage--;
+            displayNews();
+        }
+    });
+
+    // Обробка кнопки "Наступна"
+    nextButton.addEventListener("click", function () {
+        if (currentPage < Math.ceil(newsData.length / itemsPerPage)) {
+            currentPage++;
+            displayNews();
+        }
+    });
+
+    // Завантажуємо новини з news.json
+    fetch("news.json")
+    .then(response => response.json())
+    .then(data => {
+        newsData = data;
+        console.log(newsData);
+        displayNews();
+    })
+    .catch(error => console.error("Помилка завантаження новин:", error));
+
 });
