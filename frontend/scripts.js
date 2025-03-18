@@ -172,17 +172,15 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentPage = 1;
     const itemsPerPage = 4;
 
-    // Функція для відображення новин на сторінці
+    // Функція для відображення новин
     function displayNews() {
-        console.log("Відображення новин...");
         newsContainer.innerHTML = "";
         let start = (currentPage - 1) * itemsPerPage;
         let end = start + itemsPerPage;
         let paginatedNews = newsData.slice(start, end);
-    
-        let newsHTML = '';
+
         paginatedNews.forEach(news => {
-            newsHTML += `
+            const newsItem = `
                 <div class="news-item d-flex flex-column flex-md-row shadow-sm p-3 rounded">
                     <div class="news-image-container">
                         <img src="${news.image}" alt="Зображення новини" class="news-image img-fluid rounded">
@@ -200,36 +198,86 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                 </div>
             `;
+            newsContainer.innerHTML += newsItem;
         });
-        newsContainer.innerHTML = newsHTML;
-    
-        prevButton.disabled = currentPage === 1;
-        nextButton.disabled = currentPage >= Math.ceil(newsData.length / itemsPerPage);
+
+        // Додаємо номери сторінок
+        const totalPages = Math.ceil(newsData.length / itemsPerPage);
+        let pagination = '';
+
+        // Додаємо попередню кнопку
+        pagination += `
+            <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                <a class="page-link" href="#" id="prev-page" aria-label="Попередня">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        `;
+
+        // Додаємо номери сторінок
+        let startPage = Math.max(currentPage - 2, 1);
+        let endPage = Math.min(currentPage + 2, totalPages);
+
+        for (let i = startPage; i <= endPage; i++) {
+            pagination += `
+                <li class="page-item ${i === currentPage ? 'active' : ''}">
+                    <a class="page-link" href="#" data-page="${i}">${i}</a>
+                </li>
+            `;
+        }
+
+        // Додаємо наступну кнопку
+        pagination += `
+            <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                <a class="page-link" href="#" id="next-page" aria-label="Наступна">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        `;
+
+        // Вставляємо пагінацію
+        const pageNumbersContainer = document.querySelector(".pagination");
+        pageNumbersContainer.innerHTML = pagination;
+
+        // Обробник події для номерів сторінок
+        const pageLinks = document.querySelectorAll(".page-link[data-page]");
+        pageLinks.forEach(link => {
+            link.addEventListener("click", function (e) {
+                e.preventDefault();
+                currentPage = parseInt(e.target.getAttribute("data-page"));
+                displayNews();
+            });
+        });
+
+        // Оновлюємо стан кнопок
+        prevButton.parentElement.classList.toggle("disabled", currentPage === 1);
+        nextButton.parentElement.classList.toggle("disabled", currentPage === totalPages);
     }
-       // Обробка кнопки "Попередня"
-    prevButton.addEventListener("click", function () {
+
+    // Обробка події для кнопок попередньої та наступної сторінки
+    prevButton.addEventListener("click", function (e) {
+        e.preventDefault();
         if (currentPage > 1) {
             currentPage--;
             displayNews();
         }
     });
 
-    // Обробка кнопки "Наступна"
-    nextButton.addEventListener("click", function () {
+    nextButton.addEventListener("click", function (e) {
+        e.preventDefault();
         if (currentPage < Math.ceil(newsData.length / itemsPerPage)) {
             currentPage++;
             displayNews();
         }
     });
 
-    // Завантажуємо новини з news.json
+    // Завантаження новин
     fetch("news.json")
-    .then(response => response.json())
-    .then(data => {
-        newsData = data;
-        console.log(newsData);
-        displayNews();
-    })
-    .catch(error => console.error("Помилка завантаження новин:", error));
-
+        .then(response => response.json())
+        .then(data => {
+            newsData = data;
+            displayNews();
+        })
+        .catch(error => console.error("Помилка завантаження новин:", error));
 });
+

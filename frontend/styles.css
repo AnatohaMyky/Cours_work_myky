@@ -675,7 +675,7 @@ textarea.form-control::placeholder {
 }
 
 @media (max-width: 768px) {
-    .supconteiner {
+    .footer.supconteiner {
         flex-direction: column;
         align-items: center;
     }
@@ -834,6 +834,32 @@ ul {
 .news-item a:hover {
     background: var(--button-color-hover);
 }
+
+/* Оновлений стиль пагінації */
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.pagination .page-link {
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.pagination .page-item:not(.disabled) .page-link:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: #f0f0f0;
+    border-color: #ccc;
+    color: #999;
+    pointer-events: none;
+}
+
+
 
 /* Form Styles */
 .form-label {
@@ -1004,4 +1030,75 @@ ul {
 .dropdown-toggle:focus+.dropdown-content,
 .dropdown-content:focus-within {
     display: block;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    /* Фіксована ширина */
+    height: 50px;
+    /* Фіксована висота */
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+    /* Легка затемненість */
+}
+
+.carousel-control-prev {
+    left: 15px;
+}
+
+.carousel-control-next {
+    right: 15px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background-color: rgba(156, 203, 212, 0.5);
+}
+
+.carousel-control-prev::before,
+.carousel-control-next::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    padding: 5px;
+}
+
+.carousel-control-prev::before {
+    transform: rotate(135deg);
+}
+
+.carousel-control-next::before {
+    transform: rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 20px;
+        height: 20px;
+    }
+
+    .carousel-control-prev {
+        left: 4px;
+    }
+
+    .carousel-control-next {
+        right: 4px;
+    }
+
+    .carousel-control-prev::before,
+    .carousel-control-next::before {
+        width: 8px;
+        height: 8px;
+        padding: 3px;
+    }
 }

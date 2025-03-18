@@ -172,14 +172,23 @@
             <!-- Пагінація -->
             <nav>
                 <ul class="pagination justify-content-center mt-4">
-                    <li class="page-item">
-                        <button id="prev-page" class="page-link">Попередня</button>
+                    <li class="page-item" id="prev-page-container">
+                        <a id="prev-page" class="page-link" href="#" aria-label="Попередня">
+                            <span aria-hidden="true">&laquo;</span> <!-- Стрілочка вліво -->
+                        </a>
                     </li>
-                    <li class="page-item">
-                        <button id="next-page" class="page-link">Наступна</button>
+
+                    <!-- Номери сторінок будуть динамічно додаватися тут -->
+
+                    <li class="page-item" id="next-page-container">
+                        <a id="next-page" class="page-link" href="#" aria-label="Наступна">
+                            <span aria-hidden="true">&raquo;</span> <!-- Стрілочка вправо -->
+                        </a>
                     </li>
                 </ul>
             </nav>
+
+
         </div>
     </section>
 
