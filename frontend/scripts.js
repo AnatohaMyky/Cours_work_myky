@@ -1,10 +1,3 @@
-// document.addEventListener("DOMContentLoaded", function () {
-//     const elements = document.querySelectorAll('.fade-in');
-//     elements.forEach((el, index) => {
-//         el.classList.add(`delay-${index + 1}`);
-//     });
-// });
-
 // Показати стрілочку при прокрутці вниз
 window.addEventListener('scroll', function () {
     const backToTopButton = document.querySelector('.back-to-top');
@@ -178,8 +171,12 @@ document.addEventListener("DOMContentLoaded", function () {
         let start = (currentPage - 1) * itemsPerPage;
         let end = start + itemsPerPage;
         let paginatedNews = newsData.slice(start, end);
-
+    
         paginatedNews.forEach(news => {
+            const shortDescription = news.description.length > 150 
+                ? news.description.substring(0, 150) + "..." 
+                : news.description;
+    
             const newsItem = `
                 <div class="news-item d-flex flex-column flex-md-row shadow-sm p-3 rounded">
                     <div class="news-image-container">
@@ -193,13 +190,14 @@ document.addEventListener("DOMContentLoaded", function () {
                             <i class="fa fa-calendar"></i> ${news.date}
                             <span class="news-category"><i class="fa fa-bookmark"></i> ${news.category}</span>
                         </p>
-                        <p class="news-description">${news.description}</p>
-                        <a href="${news.link}" class="news-read-more">Читати далі ></a>
+                        <p class="news-description">${shortDescription}</p>
+                        <a href="news_details.html?id=${news.id}" class="news-read-more">Читати далі ></a>
                     </div>
                 </div>
             `;
             newsContainer.innerHTML += newsItem;
         });
+    
 
         // Додаємо номери сторінок
         const totalPages = Math.ceil(newsData.length / itemsPerPage);

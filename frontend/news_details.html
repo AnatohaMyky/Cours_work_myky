@@ -75,35 +75,19 @@
         </div>
     </div>
 
-    <section class="news-section py-5">
-        <div class="container news-section-container">
-            <h2 class="text-center mb-4">Останні новини</h2>
-            <div id="news-container">
-                <!-- Новини будуть завантажуватись тут динамічно -->
-            </div>
-            <!-- Пагінація -->
-            <nav>
-                <ul class="pagination justify-content-center mt-4">
-                    <li class="page-item" id="prev-page-container">
-                        <a id="prev-page" class="page-link" href="#" aria-label="Попередня">
-                            <span aria-hidden="true">&laquo;</span> <!-- Стрілочка вліво -->
-                        </a>
-                    </li>
-
-                    <!-- Номери сторінок будуть динамічно додаватися тут -->
-
-                    <li class="page-item" id="next-page-container">
-                        <a id="next-page" class="page-link" href="#" aria-label="Наступна">
-                            <span aria-hidden="true">&raquo;</span> <!-- Стрілочка вправо -->
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-
-
+    <div class="news-details-container">
+        <div class="news-details-image-container">
+            <img id="news-image" src="" alt="" class="news-details-image">
         </div>
-    </section>
+        <div class="news-details-content">
+            <h1 id="news-title" class="news-details-title"></h1>
+            <p id="news-date" class="news-details-date"></p>
+            <p id="news-content"></p>
+            <a href="news.html" class="news-details-back-link">Назад до новин</a>
+        </div>
+    </div>
 
+    <script src="news_details.js"></script>
 
 
     <!-- Стрілочка повернення на верх сторінки -->
