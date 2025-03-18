@@ -52,18 +52,21 @@ body.grayscale-active::before {
 
     .footer-buttons {
         justify-content: flex-start;
+        font-size: 100%;
     }
 
     .news-container {
         display: flex;
         flex-direction: column;
         align-items: center;
+        font-size: 100%;
     }
 
     .news-item {
         width: 90%;
         max-width: 500px;
         margin-bottom: 15px;
+        font-size: 100%;
     }
 }
 
@@ -157,6 +160,7 @@ body.grayscale-active::before {
     padding: 10px 15px;
     border-radius: 8px;
     transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 100%;
 }
 
 .navbar-nav .nav-link:hover {
@@ -196,6 +200,7 @@ body.grayscale-active::before {
 
 .navbar-nav .dropdown-item {
     color: var(--nav-link-color, #333);
+    font-size: 100%;
     padding: 10px 15px;
     border-radius: 6px;
     transition: background 0.3s ease;
@@ -220,6 +225,7 @@ body.grayscale-active::before {
     max-height: 0;
     opacity: 0;
     transition: transform 0.3s ease;
+    font-size: 100%;
 }
 
 #secondaryNavbar.show {
@@ -238,7 +244,7 @@ body.grayscale-active::before {
     /* Rounded edges for consistency */
     padding: 8px 16px;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 100%;
     transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
@@ -261,43 +267,43 @@ body.grayscale-active::before {
     background-color: #b5b5b5;
     /* Disabled button style */
     color: #888;
+    font-size: 100%;
     border: 1px solid #d6d6d6;
     cursor: not-allowed;
 }
 
 #secondaryNavbar .btn+.btn {
     margin-left: 10px;
+    font-size: 100%;
     /* Space between buttons */
 }
 
 
 
 .feature-buttons .btn {
+    font-size: 100%;
     background-color: #6c757d;
-    /* Світло-сірий фон */
     color: #333;
-    /* Темний текст */
+    font-size: 100%;
     border: 1px solid #6c757d;
-    /* Легка окантовка */
     transition: background 0.3s, box-shadow 0.3s;
 }
 
 .feature-buttons .btn:hover {
     background-color: #5a6268;
-    /* Трохи темніший відтінок при наведенні */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .feature-buttons .btn.active {
     background-color: #d1e7ff;
-    /* Світло-блакитний для активної кнопки */
+    font-size: 100%;
     color: #0056b3;
     border-color: #0056b3;
 }
 
 #toggle-grayscale {
     background-color: #6c757d;
-    /* Нейтральний сірий */
+    font-size: 100%;
     color: white;
     border: none;
 }
@@ -308,7 +314,7 @@ body.grayscale-active::before {
 
 #toggle-dyslexia-font {
     background-color: #ffc107;
-    /* Жовтий */
+    font-size: 100%;
     color: black;
     border: none;
 }
@@ -340,6 +346,7 @@ body.grayscale-active::before {
     background-color: var(--toggle-theme-btn-color);
     border-color: var(--toggle-theme-btn-color);
     max-width: 100%;
+    font-size: 100%;
 }
 
 .btn-light:hover {
@@ -348,6 +355,7 @@ body.grayscale-active::before {
 }
 
 .btn-primary {
+    font-size: 100%;
     background-color: var(--button-color);
     border-color: var(--button-color);
 }
@@ -358,6 +366,7 @@ body.grayscale-active::before {
 }
 
 .font-size-btn {
+    font-size: 100%;
     background-color: var(--button-color);
     border: 2px solid var(--button-color);
     color: white;
@@ -382,6 +391,7 @@ body.grayscale-active::before {
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.8);
+    font-size: 100%;
     color: #fff;
     padding: 10px 15px;
     border-radius: 5px;
@@ -399,6 +409,7 @@ body.grayscale-active::before {
     cursor: pointer;
     color: white;
     transition: color 0.3s ease-in-out;
+    font-size: 100%;
 }
 
 .copy-text:hover {
@@ -406,6 +417,7 @@ body.grayscale-active::before {
 }
 
 .map-link {
+    font-size: 100%;
     cursor: pointer;
     color: white;
     text-decoration: none;
@@ -424,6 +436,7 @@ body.grayscale-active::before {
     text-align: center;
     padding: 20px;
     background: var(--section-bg);
+    font-size: 100%;
     color: var(--color);
     border-radius: 8px;
     box-shadow: 0 2px 6px var(--box-shadow);
@@ -434,6 +447,7 @@ body.grayscale-active::before {
 .feature-buttons {
     display: flex;
     flex-wrap: wrap;
+    font-size: 100%;
     gap: 10px;
     justify-content: center;
 }
@@ -441,6 +455,7 @@ body.grayscale-active::before {
 .feature-buttons button {
     padding: 10px 15px;
     font-size: 1rem;
+    font-size: 100%;
     border-radius: 5px;
     transition: background 0.3s, transform 0.2s;
 }
@@ -515,6 +530,7 @@ body.grayscale-active::before {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px var(--box-shadow);
+    font-size: 100%;
     color: var(--color);
 }
 
@@ -522,6 +538,7 @@ input[type="text"],
 input[type="email"],
 input[type="number"] {
     background-color: var(--navbar-bg);
+    font-size: 100%;
     color: var(--color);
 }
 
@@ -529,34 +546,40 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="number"]:focus {
     background-color: var(--section-bg);
+    font-size: 100%;
     color: var(--color);
 }
 
 input[type="text"]::placeholder,
 input[type="email"]::placeholder,
 input[type="number"]::placeholder {
+    font-size: 100%;
     color: var(--color);
     opacity: 0.5;
 }
 
 textarea.form-control {
     background-color: var(--navbar-bg);
+    font-size: 100%;
     color: var(--color);
 }
 
 textarea.form-control:focus {
     background-color: var(--section-bg);
+    font-size: 100%;
     color: var(--color);
 }
 
 textarea.form-control::placeholder {
     color: var(--color);
+    font-size: 100%;
     opacity: 0.5;
 }
 
 .modal-header,
 .modal-footer {
     background-color: var(--section-bg);
+    font-size: 100%;
     color: var(--color);
 }
 
@@ -577,6 +600,7 @@ textarea.form-control::placeholder {
 /* Footer Styles */
 .footer {
     background-color: #333;
+    font-size: 100%;
     color: white;
     padding: 20px;
     margin-top: 20px;
@@ -599,6 +623,7 @@ textarea.form-control::placeholder {
 }
 
 .footer ul {
+    font-size: 100%;
     padding: 0;
     list-style: none;
     text-align: left;
@@ -606,21 +631,25 @@ textarea.form-control::placeholder {
 }
 
 .footer h5 {
+    font-size: 100%;
     color: var(--button-color);
     text-align: left;
     margin-bottom: 15px;
 }
 
 .footer ul li {
+    font-size: 100%;
     margin-bottom: 10px;
 }
 
 .footer ul li i {
+    font-size: 100%;
     margin-right: 8px;
     color: var(--button-color);
 }
 
 .footer a {
+    font-size: 100%;
     color: white;
     text-decoration: none;
     transition: color 0.3s ease;
@@ -631,6 +660,7 @@ textarea.form-control::placeholder {
 }
 
 .footer .btn {
+    font-size: 100%;
     background-color: var(--button-color);
     border: none;
     transition: background 0.3s ease;
@@ -644,6 +674,7 @@ textarea.form-control::placeholder {
 }
 
 .footer-buttons {
+    font-size: 100%;
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
@@ -654,21 +685,25 @@ textarea.form-control::placeholder {
 }
 
 .footer-buttons h5 {
+    font-size: 100%;
     margin-bottom: 0;
     font-size: 0.9rem;
 }
 
 .footer-buttons .btn {
+    font-size: 100%;
     flex-shrink: 0;
     min-width: 45px;
 }
 
 .footer .social-link {
+    font-size: 100%;
     display: flex;
     align-items: center;
 }
 
 .footer .social-link i {
+    font-size: 100%;
     margin-right: 10px;
 }
 
@@ -686,6 +721,7 @@ textarea.form-control::placeholder {
 /* Social Link Styles */
 .social-link {
     color: white;
+    font-size: 100%;
     text-decoration: none;
     transition: color 0.3s ease-in-out, transform 0.2s;
 }
@@ -704,6 +740,7 @@ section {
     max-width: 100%;
     margin-bottom: 40px;
     background: var(--section-bg);
+    font-size: 100%;
     color: var(--color);
     padding: 20px;
     border-radius: 5px;
@@ -712,31 +749,37 @@ section {
 
 h2 {
     color: var(--button-color);
+    font-size: 100%;
     margin-bottom: 20px;
 }
 
 ul {
     list-style-type: disc;
+    font-size: 100%;
     padding-left: 20px;
 }
 
 .row {
     margin-top: 20px;
+    font-size: 100%;
 }
 
 .col-md-4 {
     text-align: center;
+    font-size: 100%;
     color: var(--color);
     max-width: 100%;
 }
 
 .col-md-4 h4 {
     color: var(--color);
+    font-size: 100%;
     margin-bottom: 10px;
 }
 
 .header-values {
     text-align: center;
+    font-size: 100%;
     color: var(--color);
 }
 
@@ -762,6 +805,7 @@ ul {
 
 /* News Container Styles */
 .news-container {
+    font-size: 100%;
     max-width: 1320px;
     margin: 0 auto;
     padding: 0 20px;
@@ -772,6 +816,7 @@ ul {
 }
 
 .news-item {
+    font-size: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -813,12 +858,14 @@ ul {
 }
 
 .news-item p {
+    font-size: 100%;
     color: var(--color);
     font-size: 1rem;
     margin-bottom: 10px;
 }
 
 .news-item a {
+    font-size: 100%;
     margin-top: auto;
     background: var(--button-color);
     color: white;
@@ -830,27 +877,32 @@ ul {
 }
 
 .news-item a:hover {
+    font-size: 100%;
     background: var(--button-color-hover);
 }
 
 /* Оновлений стиль пагінації */
 .pagination .page-item.active .page-link {
+    font-size: 100%;
     background-color: #007bff;
     border-color: #007bff;
     color: white;
 }
 
 .pagination .page-link {
+    font-size: 100%;
     border-radius: 50%;
     font-weight: bold;
 }
 
 .pagination .page-item:not(.disabled) .page-link:hover {
+    font-size: 100%;
     background-color: #0056b3;
     color: white;
 }
 
 .pagination .page-item.disabled .page-link {
+    font-size: 100%;
     background-color: #f0f0f0;
     border-color: #ccc;
     color: #999;
@@ -863,6 +915,7 @@ ul {
 .form-label {
     font-weight: bold;
     margin-bottom: 5px;
+    font-size: 100%;
 }
 
 .form-control {
@@ -879,8 +932,6 @@ ul {
 }
 
 /* Стилі для новинної сторінки */
-
-/* Стилі тільки для першого блоку новин */
 /* Основний контейнер новини */
 .news-section-container .news-item {
     display: flex;
@@ -891,6 +942,7 @@ ul {
     box-shadow: 0 4px 6px var(--box-shadow);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     width: 100%;
+    font-size: 100%;
     margin-bottom: 20px;
 }
 
@@ -904,6 +956,7 @@ ul {
 .news-image-container {
     flex: 0 0 40%;
     max-width: 40%;
+    font-size: 100%;
 }
 
 .news-image {
@@ -919,44 +972,35 @@ ul {
     display: flex;
     flex-direction: column;
     padding-left: 20px;
+    font-size: 100%;
 }
 
 /* Заголовок */
 .news-title {
     display: inline-block;
-    /* Робить заголовок розміром по контенту */
+    font-size: 100%;
 }
 
 .news-title a {
     display: inline;
-    /* Робить посилання таким, як звичайний текст */
     background: none;
-    /* Прибирає фон */
     padding: 0;
-    /* Прибирає внутрішні відступи */
     text-decoration: none;
-    /* Якщо потрібно, прибирає підкреслення */
     color: #007bff;
-    /* Або інший синій колір, що підходить дизайну */
+    font-size: 100%;
     font-weight: bold;
-    /* Якщо потрібно, зробити жирним */
 }
 
 
 
 .news-title a:hover {
     display: inline;
-    /* Робить посилання таким, як звичайний текст */
     background: none;
-    /* Прибирає фон */
     padding: 0;
-    /* Прибирає внутрішні відступи */
     text-decoration: none;
-    /* Якщо потрібно, прибирає підкреслення */
     color: var(--nav-link-hover);
-    /* Або інший синій колір, що підходить дизайну */
     font-weight: bold;
-    /* Якщо потрібно, зробити жирним */
+    font-size: 100%;
 }
 
 
@@ -965,18 +1009,20 @@ ul {
     font-size: 0.9rem;
     color: gray;
     margin-bottom: 10px;
+    font-size: 100%;
 }
 
 .news-category {
     margin-left: 10px;
     color: #007bff;
     font-weight: bold;
+    font-size: 100%;
 }
 
 /* Опис */
 .news-description {
-    font-size: 1rem;
     margin-bottom: 10px;
+    font-size: 100%;
 }
 
 /* Кнопка "Читати далі" */
