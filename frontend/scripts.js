@@ -160,23 +160,44 @@ document.addEventListener("DOMContentLoaded", function () {
     const newsContainer = document.getElementById("news-container");
     const prevButton = document.getElementById("prev-page");
     const nextButton = document.getElementById("next-page");
+    const pageNumbersContainer = document.querySelector(".pagination");
 
     let newsData = [];
     let currentPage = 1;
     const itemsPerPage = 4;
 
-    // Функція для відображення новин
+    // Функція для форматування дати
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // додаємо нуль перед місяцем
+        const day = date.getDate().toString().padStart(2, '0'); // додаємо нуль перед числом
+        return `${year}-${month}-${day}`;
+    }
+
     function displayNews() {
+        if (!newsContainer) return;
+
+        // Сортуємо новини по id від новіших до старіших
+        const sortedNews = newsData.sort((a, b) => b.id - a.id);
+
+        // Обмежуємо кількість новин до 40
+        const limitedNews = sortedNews.slice(0, 40);
+
         newsContainer.innerHTML = "";
         let start = (currentPage - 1) * itemsPerPage;
         let end = start + itemsPerPage;
-        let paginatedNews = newsData.slice(start, end);
-    
+        let paginatedNews = limitedNews.slice(start, end);
+
         paginatedNews.forEach(news => {
-            const shortDescription = news.description.length > 150 
-                ? news.description.substring(0, 150) + "..." 
+            console.log(news);
+            const shortDescription = news.description.length > 150
+                ? news.description.substring(0, 150) + "..."
                 : news.description;
-    
+
+            // Форматування дати
+            const formattedDate = formatDate(news.date);
+
             const newsItem = `
                 <div class="news-item d-flex flex-column flex-md-row shadow-sm p-3 rounded">
                     <div class="news-image-container">
@@ -187,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <a href="${news.link}" class="news-link">${news.title}</a>
                         </h3>
                         <p class="news-meta">
-                            <i class="fa fa-calendar"></i> ${news.date}
+                            <i class="fa fa-calendar"></i> ${formattedDate} <!-- Виведення відформатованої дати -->
                             <span class="news-category"><i class="fa fa-bookmark"></i> ${news.category}</span>
                         </p>
                         <p class="news-description">${shortDescription}</p>
@@ -197,85 +218,56 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
             newsContainer.innerHTML += newsItem;
         });
-    
 
-        // Додаємо номери сторінок
-        const totalPages = Math.ceil(newsData.length / itemsPerPage);
-        let pagination = '';
-
-        // Додаємо попередню кнопку
-        pagination += `
-            <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
-                <a class="page-link" href="#" id="prev-page" aria-label="Попередня">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-        `;
-
-        // Додаємо номери сторінок
-        let startPage = Math.max(currentPage - 2, 1);
-        let endPage = Math.min(currentPage + 2, totalPages);
-
-        for (let i = startPage; i <= endPage; i++) {
-            pagination += `
-                <li class="page-item ${i === currentPage ? 'active' : ''}">
-                    <a class="page-link" href="#" data-page="${i}">${i}</a>
-                </li>
-            `;
+        if (!pageNumbersContainer) {
+            console.error("Контейнер пагінації не знайдено!");
+            return;
         }
 
-        // Додаємо наступну кнопку
-        pagination += `
-            <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
-                <a class="page-link" href="#" id="next-page" aria-label="Наступна">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        `;
+        const totalPages = Math.ceil(limitedNews.length / itemsPerPage);
+        let pagination = '';
 
-        // Вставляємо пагінацію
-        const pageNumbersContainer = document.querySelector(".pagination");
+        pagination += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="${currentPage - 1}">&laquo;</a>
+        </li>`;
+
+        for (let i = 1; i <= totalPages; i++) {
+            pagination += `<li class="page-item ${i === currentPage ? 'active' : ''}">
+                <a class="page-link" href="#" data-page="${i}">${i}</a>
+            </li>`;
+        }
+
+        pagination += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="${currentPage + 1}">&raquo;</a>
+        </li>`;
+
         pageNumbersContainer.innerHTML = pagination;
 
-        // Обробник події для номерів сторінок
-        const pageLinks = document.querySelectorAll(".page-link[data-page]");
-        pageLinks.forEach(link => {
+        document.querySelectorAll(".page-link[data-page]").forEach(link => {
             link.addEventListener("click", function (e) {
                 e.preventDefault();
-                currentPage = parseInt(e.target.getAttribute("data-page"));
-                displayNews();
+                const newPage = parseInt(e.target.getAttribute("data-page"));
+                if (newPage > 0 && newPage <= totalPages) {
+                    currentPage = newPage;
+                    displayNews();
+                }
             });
         });
 
-        // Оновлюємо стан кнопок
-        prevButton.parentElement.classList.toggle("disabled", currentPage === 1);
-        nextButton.parentElement.classList.toggle("disabled", currentPage === totalPages);
+        if (prevButton) prevButton.parentElement.classList.toggle("disabled", currentPage === 1);
+        if (nextButton) nextButton.parentElement.classList.toggle("disabled", currentPage === totalPages);
     }
 
-    // Обробка події для кнопок попередньої та наступної сторінки
-    prevButton.addEventListener("click", function (e) {
-        e.preventDefault();
-        if (currentPage > 1) {
-            currentPage--;
-            displayNews();
-        }
-    });
-
-    nextButton.addEventListener("click", function (e) {
-        e.preventDefault();
-        if (currentPage < Math.ceil(newsData.length / itemsPerPage)) {
-            currentPage++;
-            displayNews();
-        }
-    });
-
-    // Завантаження новин
-    fetch("news.json")
+    fetch('http://localhost:3000/api/news')
         .then(response => response.json())
         .then(data => {
+            console.log("Отримані новини:", data);
+            if (!Array.isArray(data)) {
+                console.error("Помилка: API повернуло не масив.");
+                return;
+            }
             newsData = data;
             displayNews();
         })
-        .catch(error => console.error("Помилка завантаження новин:", error));
+        .catch(error => console.error('Помилка завантаження новин:', error));
 });
-

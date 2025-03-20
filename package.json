@@ -1,0 +1,27 @@
+{
+  "name": "cours_work_myky",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnatohaMyky/Cours_work_myky.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnatohaMyky/Cours_work_myky/issues"
+  },
+  "homepage": "https://github.com/AnatohaMyky/Cours_work_myky#readme",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mysql2": "^3.13.0",
+    "nodemon": "^3.1.9"
+  }
+}

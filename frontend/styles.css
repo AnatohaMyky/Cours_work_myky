@@ -2,7 +2,7 @@
     font-family: 'Inclusion UKR';
     src: url('/assets/inclusion.ukr.woff') format('woff');
     font-weight: normal;
-    font-style: normal;
+    font-style: bold;
 }
 
 body {
@@ -12,7 +12,6 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    font-size: 100%;
     overflow: auto;
 }
 
@@ -603,7 +602,7 @@ textarea.form-control::placeholder {
     font-size: 100%;
     color: white;
     padding: 20px;
-    margin-top: 20px;
+    margin-top: auto;
 }
 
 .footer .supconteiner {
@@ -749,7 +748,6 @@ section {
 
 h2 {
     color: var(--button-color);
-    font-size: 100%;
     margin-bottom: 20px;
 }
 
@@ -779,7 +777,6 @@ ul {
 
 .header-values {
     text-align: center;
-    font-size: 100%;
     color: var(--color);
 }
 
