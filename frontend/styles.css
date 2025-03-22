@@ -1231,6 +1231,51 @@ ul {
     transform: rotate(-45deg);
 }
 
+
+.teachers-page {
+    background-color: var();
+    color: var(--color);
+    text-align: center;
+    padding: 20px;
+}
+
+.teachers-container {
+    background-color: var();
+    color: var(--color);
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.teachers-title,
+.teachers-subtitle {
+    color: #4a90e2;
+}
+
+.teachers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.teacher-card {
+    background: #333;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.teacher-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.teacher-name {
+    font-size: 1.2rem;
+    color: #4a90e2;
+    margin-top: 10px;
+}
+
 @media (max-width: 768px) {
 
     .carousel-control-prev,

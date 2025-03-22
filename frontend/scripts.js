@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (nextButton) nextButton.parentElement.classList.toggle("disabled", currentPage === totalPages);
     }
 
-    fetch("news.json")
+    fetch("../data/news.json")
         .then(response => response.json())
         .then(data => {
             newsData = data;

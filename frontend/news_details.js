@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const params = new URLSearchParams(window.location.search);
     const newsId = params.get("id");
 
-    fetch("news.json")
+    fetch("../data/news.json")
         .then(response => response.json())
         .then(newsData => {
             console.log("Отримані новини:", newsData);

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const newsContainer = document.querySelector(".news-container");
 
-    fetch('news.json')
+    fetch("../data/news.json")
         .then(response => response.json())
         .then(data => {
             console.log("Отримані новини:", data);
