@@ -1,29 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const newsContainer = document.querySelector(".news-container"); // Шукаємо контейнер для новин
+    const newsContainer = document.querySelector(".news-container");
 
-    // Завантажуємо останні 4 новини з API
-    fetch('http://localhost:3000/api/news?limit=4') // Запит з параметром для обмеження результатів
+    fetch('news.json')
         .then(response => response.json())
         .then(data => {
             console.log("Отримані новини:", data);
             if (Array.isArray(data) && data.length > 0) {
-                renderLatestNews(data); // Викликаємо функцію для відображення новин
+                renderLatestNews(data);
             } else {
-                console.error("Помилка: API не повернуло новини.");
+                console.error("Помилка: JSON не містить новин.");
             }
         })
         .catch(error => console.error('Помилка завантаження новин:', error));
 
-    // Функція для відображення новин
     function renderLatestNews(news) {
         if (!newsContainer) return;
 
-        // Сортуємо новини від новіших до старіших (за id)
-        news.sort((a, b) => b.id - a.id);
+        newsContainer.innerHTML = '';
 
-        newsContainer.innerHTML = ''; // Очищаємо контейнер перед заповненням
-
-        // Обмежуємо кількість новин до 4
         const limitedNews = news.slice(0, 4);
 
         limitedNews.forEach(item => {
@@ -32,11 +26,22 @@ document.addEventListener("DOMContentLoaded", function () {
                     <img class="news-img" src="${item.image}" alt="${item.title}">
                     <div class="news-content">
                         <p>${item.description}</p>
-                        <a href="news_details.html?id=${item.id}">Детальніше</a>
+                        <p class="news-meta"><i class="fa fa-calendar"></i> ${formatDate(item.date)}</p>
+                        <a href="news_details.html?id=${item.id}" class="news-link">Детальніше</a>
                     </div>
                 </div>
             `;
-            newsContainer.innerHTML += newsItem; // Додаємо новину в контейнер
+            newsContainer.innerHTML += newsItem;
         });
+
+        document.querySelectorAll(".news-link").forEach(link => {
+            link.addEventListener("click", function () {
+                sessionStorage.setItem("previousPage", window.location.href);
+            });
+        });
+    }
+
+    function formatDate(dateString) {
+        return dateString.split("T")[0]; // Відрізаємо все після "T"
     }
 });
