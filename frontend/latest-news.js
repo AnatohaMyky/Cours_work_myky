@@ -1,14 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
     const newsContainer = document.querySelector(".news-container");
 
-    fetch("../data/news.json")
+    // Виконати запит до PHP для отримання новин із бази даних
+    fetch("../backend/fetch_news.php")
         .then(response => response.json())
         .then(data => {
             console.log("Отримані новини:", data);
             if (Array.isArray(data) && data.length > 0) {
                 renderLatestNews(data);
             } else {
-                console.error("Помилка: JSON не містить новин.");
+                console.error("Помилка: База даних не містить новин.");
             }
         })
         .catch(error => console.error('Помилка завантаження новин:', error));
@@ -18,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         newsContainer.innerHTML = '';
 
-        const limitedNews = news.slice(0, 4);
+        const limitedNews = news.slice(0, 4); // Вивести лише 4 новини
 
         limitedNews.forEach(item => {
             const newsItem = `

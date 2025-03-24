@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Inclusion UKR';
-    src: url('/assets/inclusion.ukr.woff') format('woff');
+    src: url('../assets/inclusion.ukr.woff') format('woff');
     font-weight: normal;
     font-style: bold;
 }
