@@ -1,6 +1,21 @@
 <?php
 // Підключення до конфігурації бази даних
 require_once '../backend/config.php';
+session_start();
+
+// Якщо адміністратор не авторизований, перенаправити на login.php
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header("Location: login.php");
+    exit();
+}
+// Вихід з панелі адміністратора
+if (isset($_GET['logout'])) {
+    session_start();
+    session_unset();
+    session_destroy();
+    header("Location: ../backend/login.php");
+    exit();
+}
 
 // Список дозволених таблиць
 $allowedTables = ['news', 'documents', 'teachers', 'vryaduvannya']; // Додайте свої таблиці
@@ -49,7 +64,12 @@ if ($columnsQuery) {
 </head>
 
 <body>
+    <!-- Кнопка для повернення на головну -->
     <button onclick="window.location.href='index.html';">На головну</button>
+    <button onclick="window.location.href='forTeacher.html';">Назад</button>
+
+    <!-- Кнопка для виходу з панелі адміністратора -->
+    <a href="../frontend/admin_panel.php?logout=true">Вийти</a>
 
     <h1>Інтерфейс редагування даних</h1>
 
