@@ -18,7 +18,7 @@ if (isset($_GET['logout'])) {
 }
 
 // Список дозволених таблиць
-$allowedTables = ['news', 'documents', 'teachers', 'vryaduvannya']; // Додайте свої таблиці
+$allowedTables = ['news', 'documents', 'teachers', 'vryaduvannya', 'documents_for_participants'];
 
 // Отримуємо список таблиць з бази
 $sql = "SHOW TABLES";
@@ -66,7 +66,7 @@ if ($columnsQuery) {
 <body>
     <!-- Кнопка для повернення на головну -->
     <button onclick="window.location.href='index.html';">На головну</button>
-    <button onclick="window.location.href='forTeacher.html';">Назад</button>
+    <button onclick="window.location.href='forTeacher.php';">Назад</button>
 
     <!-- Кнопка для виходу з панелі адміністратора -->
     <a href="../frontend/admin_panel.php?logout=true">Вийти</a>
@@ -118,12 +118,22 @@ if ($columnsQuery) {
         <?php foreach ($columns as $column): ?>
             <?php if ($column !== 'id'): ?> <!-- ID зазвичай автоінкрементний -->
                 <label for="<?= $column ?>">Поле <?= htmlspecialchars($column) ?>:</label>
-                <input type="text" name="<?= $column ?>" required><br><br>
+
+                <?php if ($column == 'for_parents' || $column == 'for_teachers' || $column == 'for_students'): ?>
+                    <select name="<?= $column ?>" required>
+                        <option value="1" <?= (isset($row[$column]) && $row[$column] == 1) ? 'selected' : '' ?>>True</option>
+                        <option value="0" <?= (isset($row[$column]) && $row[$column] == 0) ? 'selected' : '' ?>>False</option>
+                    </select>
+                <?php else: ?>
+                    <input type="text" name="<?= $column ?>" required><br><br>
+                <?php endif; ?>
+
             <?php endif; ?>
         <?php endforeach; ?>
 
         <button type="submit">Додати</button>
     </form>
+
 
 </body>
 

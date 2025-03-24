@@ -3,7 +3,7 @@
 require_once 'config.php';
 
 // Список дозволених таблиць (щоб уникнути SQL-ін'єкцій)
-$allowedTables = ['news', 'documents', 'teachers', 'vryaduvannya']; // Додайте свої таблиці
+$allowedTables = ['news', 'documents', 'teachers', 'vryaduvannya', 'documents_for_participants'];
 
 // Перевірка параметрів
 $id = $_GET['id'] ?? null;

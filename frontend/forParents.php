@@ -1,3 +1,16 @@
+<?php
+require_once '../backend/config.php';
+
+$sql = "SELECT * FROM documents_for_participants WHERE for_parents = 1";
+$result = $pdo->query($sql);
+$documents = [];
+if ($result) {
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $documents[] = $row;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="uk">
 
@@ -80,12 +93,39 @@
         </div>
     </div>
 
+    <div class="container">
+        <!-- Фільтр документів -->
+        <h1 style="text-align: center; color:var(--color)">Документи для батьків</h1>
+
+        <?php if (empty($documents)): ?>
+            <p>Немає документів для батьків.</p>
+        <?php else: ?>
+            <div class="row">
+                <?php foreach ($documents as $document): ?>
+                    <div class="col-md-4 mb-3">
+                        <div class="card shadow-sm">
+                            <div class="row no-gutters">
+                                <div class="col-4 d-flex align-items-center justify-content-center">
+                                    <img src="path/to/your/icon.png" class="img-fluid" alt="Документ">
+                                </div>
+                                <div class="col-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?= htmlspecialchars($document['document_name']) ?></h5>
+                                        <a href="<?= htmlspecialchars($document['google_drive_link']) ?>" target="_blank" class="btn btn-primary">Переглянути</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+
     <!-- Стрілочка повернення на верх сторінки -->
     <a href="#" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </a>
-
-
 
     <!-- Футер -->
     <footer class="footer bg-dark text-white py-4">

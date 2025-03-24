@@ -1299,3 +1299,39 @@ ul {
         padding: 3px;
     }
 }
+
+/* Стилізація для сторінки вчителів */
+
+.card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--section-bg);
+    box-shadow: 0 4px 6px var(--box-shadow);
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--color);
+}
+
+.card-body {
+    padding: 1rem;
+    color: var(--color);
+}
+
+.card img {
+    max-width: 60%;
+    height: auto;
+}
+
+.card .btn {
+    background-color: var(--button-color);
+    border-color: var(--button-color);
+}
+
+.card .btn:hover {
+    background-color: var(--button-color-hover);
+    border-color: var(--button-color-hover);
+}
