@@ -2,7 +2,7 @@
 $host = "localhost";
 $dbname = "school_website";
 $username = "root";
-$password = "10//Totolyan045"; // Вкажи пароль, якщо є
+$password = "10//Totolyan049";
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);

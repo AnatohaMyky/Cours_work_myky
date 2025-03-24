@@ -14,6 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error('Помилка завантаження новин:', error));
 
+    // Функція для форматування дати
+    function formatDate(dateString) {
+        return dateString.split("T")[0]; // Відрізаємо все після "T"
+    }
+
+    // Функція для відображення новин
     function renderLatestNews(news) {
         if (!newsContainer) return;
 
@@ -23,14 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         limitedNews.forEach(item => {
             const newsItem = `
-                <div class="news-item">
-                    <img class="news-img" src="${item.image}" alt="${item.title}">
-                    <div class="news-content">
-                        <p>${item.description}</p>
-                        <p class="news-meta"><i class="fa fa-calendar"></i> ${formatDate(item.date)}</p>
-                        <a href="news_details.html?id=${item.id}" class="news-link">Детальніше</a>
-                    </div>
-                </div>
+<div class="news-item">
+    <img class="news-img" src="${item.image}" alt="${item.title}">
+    <div class="news-content">
+        <p>${item.description}</p>
+        <p class="news-meta"><i class="fa fa-calendar"></i> ${formatDate(item.date)}</p>
+        <a href="${item.social_link}" class="news-link" target="_blank">Детальніше</a>
+    </div>
+</div>
+
             `;
             newsContainer.innerHTML += newsItem;
         });
@@ -40,9 +47,5 @@ document.addEventListener("DOMContentLoaded", function () {
                 sessionStorage.setItem("previousPage", window.location.href);
             });
         });
-    }
-
-    function formatDate(dateString) {
-        return dateString.split("T")[0]; // Відрізаємо все після "T"
     }
 });
