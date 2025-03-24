@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const html = document.documentElement; // Змінюємо body на html
 
     function updateThemeIcon(isDark) {
-        themeToggleBtn.textContent = isDark ? "🌙" : "☀️";
+        themeToggleBtn.textContent = isDark ? "🌙 Змінити тему" : "☀️ Змінити тему";
     }
 
     // Перевіряємо стан теми при завантаженні
@@ -241,13 +241,14 @@ document.addEventListener("DOMContentLoaded", function () {
         if (nextButton) nextButton.parentElement.classList.toggle("disabled", currentPage === totalPages);
     }
 
-    fetch("../data/news.json")
+    fetch("fetch_news.php")
         .then(response => response.json())
         .then(data => {
             newsData = data;
             displayNews();
         })
         .catch(error => console.error("Помилка завантаження новин:", error));
+
 
     document.addEventListener("click", function (event) {
         if (event.target.classList.contains("news-read-more")) {
