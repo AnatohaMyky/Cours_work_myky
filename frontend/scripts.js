@@ -240,7 +240,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (prevButton) prevButton.parentElement.classList.toggle("disabled", currentPage === 1);
         if (nextButton) nextButton.parentElement.classList.toggle("disabled", currentPage === totalPages);
     }
-
     fetch("../backend/fetch_news.php")
         .then(response => response.json())
         .then(data => {
