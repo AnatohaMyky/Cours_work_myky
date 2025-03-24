@@ -199,8 +199,8 @@ document.addEventListener("DOMContentLoaded", function () {
                             <i class="fa fa-calendar"></i> ${formattedDate}
                             <span class="news-category"><i class="fa fa-bookmark"></i> ${news.category}</span>
                         </p>
-                        <p class="news-description">${shortDescription}</p>
-                        <a href="news_details.html?id=${news.id}" class="news-read-more">Читати далі ></a>
+                            <p class="news-description">${shortDescription}</p>
+                            <a href="${news.social_link}" class="news-read-more" target="_blank">Читати далі ></a>
                     </div>
                 </div>
             `;
