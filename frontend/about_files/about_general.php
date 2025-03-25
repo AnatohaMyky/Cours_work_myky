@@ -8,16 +8,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <script src="blickFixer.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../blickFixer.js"></script>
 </head>
 
 <body>
     <!-- Основна навігаційна панель -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="../assets/images/Logo_v2.svg" alt="Логотип" width="96" height="48" class="rounded">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../../assets/images/Logo_v2.svg" alt="Логотип" width="96" height="48" class="rounded">
                 <div class="split-text ms-2 fw-bold">Хотинський опорний <br> академічний ліцей</div>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -31,11 +31,11 @@
                             Про нас
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-                            <li><a class="dropdown-item" href="about_files/about_general.html">Загальна інформація</a>
+                            <li><a class="dropdown-item" href="about_general.php">Загальна інформація</a>
                             </li>
-                            <li><a class="dropdown-item" href="about_files/about_teachers.html">Педагогічний
+                            <li><a class="dropdown-item" href="about_teachers.php">Педагогічний
                                     колектив</a></li>
-                            <li><a class="dropdown-item" href="about_files/about_governance.html">Органи громадського
+                            <li><a class="dropdown-item" href="about_governance.php">Органи громадського
                                     врядування</a></li>
                         </ul>
                     </li>
@@ -46,15 +46,15 @@
                             Учасникам освітнього процесу
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="participantsDropdown">
-                            <li><a class="dropdown-item" href="forTeacher.php">Педагогічним працівникам</a></li>
-                            <li><a class="dropdown-item" href="forParents.php">Батькам</a></li>
-                            <li><a class="dropdown-item" href="forStudents.php">Здобувачам освіти</a></li>
+                            <li><a class="dropdown-item" href="../forTeacher.php">Педагогічним працівникам</a></li>
+                            <li><a class="dropdown-item" href="../forParents.php">Батькам</a></li>
+                            <li><a class="dropdown-item" href="../forStudents.php">Здобувачам освіти</a></li>
                         </ul>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link" href="news.html">Новини</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../news.html">Новини</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="documents.html" id="documentsDropdown" role="button">
+                        <a class="nav-link dropdown-toggle" href="../documents.php" id="documentsDropdown" role="button">
                             Документи
                         </a>
                     </li>
@@ -81,12 +81,12 @@
     </div>
 
 
+
+
     <!-- Стрілочка повернення на верх сторінки -->
     <a href="#" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </a>
-
-
 
     <!-- Футер -->
     <footer class="footer bg-dark text-white py-4">
@@ -188,7 +188,7 @@
     </div>
 
 
-    <script src="scripts.js"></script>
+    <script src="../scripts.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 

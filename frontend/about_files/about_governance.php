@@ -1,3 +1,55 @@
+<?php
+require_once '../../backend/config.php';
+
+// Отримуємо всіх співробітників врядування
+$sql = "SELECT * FROM vryaduvannya";
+$result = $pdo->query($sql);
+$vryaduvannya = [];
+if ($result) {
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $vryaduvannya[] = $row;
+    }
+
+    // Мапінг категорій для врядування
+    $categoryNames = [
+        'labor_collective_governance' => 'Органи врядування трудового колективу',
+        'parents_governance' => 'Органи батьківського врядування',
+        'students_governance' => 'Органи учнівського врядування',
+        'ombudsman' => 'Омбудсман'
+    ];
+
+    // Функція для відображення співробітників за категоріями
+    function displayVryaduvannyaByCategory($category, $vryaduvannya, $categoryNames)
+    {
+        $filteredVryaduvannya = array_filter($vryaduvannya, function ($member) use ($category) {
+            return $member[$category] == 1;
+        });
+
+        if (empty($filteredVryaduvannya)) {
+            return '';
+        }
+
+        // Отримуємо назву категорії на українській мові
+        $categoryTitle = isset($categoryNames[$category]) ? $categoryNames[$category] : ucfirst(str_replace('_', ' ', $category));
+
+        $html = "<h2 class='teachers-subtitle'>" . htmlspecialchars($categoryTitle) . "</h2>";
+        $html .= "<div class='teachers-grid'>";
+
+        foreach ($filteredVryaduvannya as $member) {
+            $html .= "<div class='teacher-card'>
+                    <img src='" . htmlspecialchars($member['photo_path']) . "' alt='Фото співробітника'>
+                    <div class='teacher-name'>" . htmlspecialchars($member['full_name']) . "</div>
+                    <p>" . htmlspecialchars($member['position']) . "</p>
+                  </div>";
+        }
+
+        $html .= "</div>";
+        return $html;
+    } // Закриваюча дужка для функції
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="uk">
 
@@ -31,14 +83,15 @@
                             Про нас
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-                            <li><a class="dropdown-item" href="about_general.html">Загальна інформація</a>
+                            <li><a class="dropdown-item" href="about_general.php">Загальна інформація</a>
                             </li>
-                            <li><a class="dropdown-item" href="about_teachers.html">Педагогічний
+                            <li><a class="dropdown-item" href="about_teachers.php">Педагогічний
                                     колектив</a></li>
-                            <li><a class="dropdown-item" href="about_governance.html">Органи громадського
+                            <li><a class="dropdown-item" href="about_governance.php">Органи громадського
                                     врядування</a></li>
                         </ul>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="participantsDropdown"
                             role="button">
@@ -53,8 +106,7 @@
 
                     <li class="nav-item"><a class="nav-link" href="../news.html">Новини</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="../documents.html" id="documentsDropdown"
-                            role="button">
+                        <a class="nav-link dropdown-toggle" href="../documents.php" id="documentsDropdown" role="button">
                             Документи
                         </a>
                     </li>
@@ -77,6 +129,25 @@
             <button id="toggle-grayscale" class="btn btn-dark m-1">Чорно-білий режим</button>
             <button id="toggle-dyslexia-font" class="btn btn-warning m-1">Шрифт для людей з дислексією</button>
             <button id="theme-toggle" class="btn btn-outline-light m-1">🌙 Змінити тему</button>
+        </div>
+    </div>
+
+
+    <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
+        <div class="teachers-container">
+            <h1 class="teachers-title">Врядування на базі закладу</h1>
+
+            <!-- Органи врядування трудового колективу -->
+            <?= displayVryaduvannyaByCategory('labor_collective_governance', $vryaduvannya, $categoryNames) ?>
+
+            <!-- Органи батьківського врядування -->
+            <?= displayVryaduvannyaByCategory('parents_governance', $vryaduvannya, $categoryNames) ?>
+
+            <!-- Органи учнівського врядування -->
+            <?= displayVryaduvannyaByCategory('students_governance', $vryaduvannya, $categoryNames) ?>
+
+            <!-- Омбудсман -->
+            <?= displayVryaduvannyaByCategory('ombudsman', $vryaduvannya, $categoryNames) ?>
         </div>
     </div>
 

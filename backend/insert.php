@@ -8,11 +8,11 @@ $allowedTables = ['news', 'documents', 'teachers', 'vryaduvannya', 'documents_fo
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Перевіряємо, чи вказана таблиця
     $table = $_POST['table'] ?? null;
-    
+
     if (!$table || !in_array($table, $allowedTables)) {
         die('Некоректна таблиця');
     }
-    
+
     // Формуємо список стовпців і значень для вставки
     $columns = [];
     $values = [];
@@ -24,8 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($value) && $key !== 'image') {
                 $value = null;
             }
+
+            // Для булевих полів встановлюємо значення 1 чи 0
+            if ($key === 'for_parents' || $key === 'for_teachers' || $key === 'for_students') {
+                $value = isset($value) ? (int)$value : 0; // Преобразуємо значення до числа
+            }
+
+            // Якщо зображення порожнє, встановлюємо дефолтне
             if ($key === 'image' && empty($value)) {
-                $value = 'default.jpg'; // Дефолтне зображення
+                $value = 'default.jpg';
             }
 
             $columns[] = "`$key`"; // Використовуємо бектики для захисту назв стовпців
@@ -33,6 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data[":$key"] = $value;
         }
     }
+
+    // Перевірка даних
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>'; 
+
 
     // Перевіряємо, чи є хоч одне значення для вставки
     if (empty($columns)) {
@@ -42,6 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Формуємо SQL-запит
     $columns_str = implode(", ", $columns);
     $values_str = implode(", ", $values);
+
+    // Перевірка запиту
+    echo "SQL запит: INSERT INTO `$table` ($columns_str) VALUES ($values_str)<br>";
 
     $sql = "INSERT INTO `$table` ($columns_str) VALUES ($values_str)";
 
@@ -56,4 +72,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Помилка вставки: " . $e->getMessage();
     }
 }
-?>

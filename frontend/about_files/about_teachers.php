@@ -1,3 +1,61 @@
+<?php
+require_once '../../backend/config.php';
+
+// Отримуємо всіх вчителів
+$sql = "SELECT * FROM teachers";
+$result = $pdo->query($sql);
+$teachers = [];
+if ($result) {
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $teachers[] = $row;
+    }
+}
+
+// Мапінг категорій на українську мову
+$categoryNames = [
+    'administration' => 'Адміністрація закладу',
+    'primary_teacher' => 'Учителі початкових класів',
+    'language_and_literature' => 'Мовно-літературна освітня галузь',
+    'mathematics' => 'Математична освітня галузь',
+    'civil_and_historical' => 'Громадянська та історична освітня галузь',
+    'natural_sciences' => 'Природнича освітня галузь',
+    'technical_sciences' => 'Технологічна освітня галузь',
+    'informatics' => 'Інформатична освітня галузь',
+    'social_and_health' => 'Соціальна і здоров\'язбережувальна галузь',
+    'arts' => 'Мистецька освітня галузь',
+    'physical_education' => 'Фізкультурна освітня галузь'
+];
+
+// Функція для відображення вчителів за категоріями
+function displayTeachersByCategory($category, $teachers, $categoryNames)
+{
+    $filteredTeachers = array_filter($teachers, function ($teacher) use ($category) {
+        return $teacher[$category] == 1;
+    });
+
+    if (empty($filteredTeachers)) {
+        return '';
+    }
+
+    // Отримуємо назву категорії на українській мові
+    $categoryTitle = isset($categoryNames[$category]) ? $categoryNames[$category] : ucfirst(str_replace('_', ' ', $category));
+
+    $html = "<h2 class='teachers-subtitle'>" . htmlspecialchars($categoryTitle) . "</h2>";
+    $html .= "<div class='teachers-grid'>";
+
+    foreach ($filteredTeachers as $teacher) {
+        $html .= "<div class='teacher-card'>
+                    <img src='" . htmlspecialchars($teacher['photo_path']) . "' alt='Фото вчителя'>
+                    <div class='teacher-name'>" . htmlspecialchars($teacher['full_name']) . "</div>
+                    <p>" . htmlspecialchars($teacher['position']) . "</p>
+                  </div>";
+    }
+
+    $html .= "</div>";
+    return $html;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="uk">
 
@@ -13,6 +71,7 @@
 </head>
 
 <body>
+    <!-- Основна навігаційна панель -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="../index.html">
@@ -30,14 +89,15 @@
                             Про нас
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-                            <li><a class="dropdown-item" href="about_general.html">Загальна інформація</a>
+                            <li><a class="dropdown-item" href="about_general.php">Загальна інформація</a>
                             </li>
-                            <li><a class="dropdown-item" href="about_teachers.html">Педагогічний
+                            <li><a class="dropdown-item" href="about_teachers.php">Педагогічний
                                     колектив</a></li>
-                            <li><a class="dropdown-item" href="about_governance.html">Органи громадського
+                            <li><a class="dropdown-item" href="about_governance.php">Органи громадського
                                     врядування</a></li>
                         </ul>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="participantsDropdown"
                             role="button">
@@ -52,8 +112,7 @@
 
                     <li class="nav-item"><a class="nav-link" href="../news.html">Новини</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="../documents.html" id="documentsDropdown"
-                            role="button">
+                        <a class="nav-link dropdown-toggle" href="../documents.php" id="documentsDropdown" role="button">
                             Документи
                         </a>
                     </li>
@@ -79,93 +138,45 @@
         </div>
     </div>
 
+    <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
+        <div class="teachers-container">
+            <h1 class="teachers-title">Наш колектив</h1>
 
-    <div class="teachers-container">
-        <h1 class="teachers-title">Органи громадського врядування</h1>
+            <!-- Адміністрація -->
+            <?= displayTeachersByCategory('administration', $teachers, $categoryNames) ?>
 
-        <h2 class="teachers-subtitle">Органи врядування трудового колективу</h2>
-        <div class="teachers-grid">
-            <div class="teacher-card">
-                <img src="teacher3.jpg" alt="Фото вчителя">
-                <div class="teacher-name">Ім'я Прізвище</div>
-                <p>Посада</p>
-            </div>
-            <div class="teacher-card">
-                <img src="teacher3.jpg" alt="Фото вчителя">
-                <div class="teacher-name">Ім'я Прізвище</div>
-                <p>Посада</p>
-            </div>
-            <div class="teacher-card">
-                <img src="teacher3.jpg" alt="Фото вчителя">
-                <div class="teacher-name">Ім'я Прізвище</div>
-                <p>Посада</p>
-            </div>
-            <div class="teacher-card">
-                <img src="teacher3.jpg" alt="Фото вчителя">
-                <div class="teacher-name">Ім'я Прізвище</div>
-                <p>Посада</p>
-            </div>
-        </div>
+            <!-- Учителі початкових класів -->
+            <?= displayTeachersByCategory('primary_teacher', $teachers, $categoryNames) ?>
 
-        <h2 class="teachers-subtitle">Органи батьківського врядування </h2>
-        <div class="teachers-grid">
-            <div class="teacher-card">
-                <img src="teacher3.jpg" alt="Фото вчителя">
-                <div class="teacher-name">Ім'я Прізвище</div>
-                <p>Посада</p>
-            </div>
-            <div class="teacher-card">
-                <img src="teacher3.jpg" alt="Фото вчителя">
-                <div class="teacher-name">Ім'я Прізвище</div>
-                <p>Посада</p>
-            </div>
-            <div class="teacher-card">
-                <img src="teacher3.jpg" alt="Фото вчителя">
-                <div class="teacher-name">Ім'я Прізвище</div>
-                <p>Посада</p>
-            </div>
-            <div class="teacher-card">
-                <img src="teacher3.jpg" alt="Фото вчителя">
-                <div class="teacher-name">Ім'я Прізвище</div>
-                <p>Посада</p>
-            </div>
-        </div>
+            <!-- Мовно-літературна освітня галузь -->
+            <?= displayTeachersByCategory('language_and_literature', $teachers, $categoryNames) ?>
 
-        <h2 class="teachers-subtitle">Органи учнівського врядування </h2>
-        <div class="teachers-grid">
-            <div class="teacher-card">
-                <img src="teacher3.jpg" alt="Фото вчителя">
-                <div class="teacher-name">Ім'я Прізвище</div>
-                <p>Посада</p>
-            </div>
-            <div class="teacher-card">
-                <img src="teacher3.jpg" alt="Фото вчителя">
-                <div class="teacher-name">Ім'я Прізвище</div>
-                <p>Посада</p>
-            </div>
-            <div class="teacher-card">
-                <img src="teacher3.jpg" alt="Фото вчителя">
-                <div class="teacher-name">Ім'я Прізвище</div>
-                <p>Посада</p>
-            </div>
-            <div class="teacher-card">
-                <img src="teacher3.jpg" alt="Фото вчителя">
-                <div class="teacher-name">Ім'я Прізвище</div>
-                <p>Посада</p>
-            </div>
-        </div>
+            <!-- Математична освітня галузь -->
+            <?= displayTeachersByCategory('mathematics', $teachers, $categoryNames) ?>
 
-        <h2 class="teachers-subtitle">Омбудсмен </h2>
-        <div class="teachers-grid">
-            <div class="teacher-card">
-                <img src="teacher3.jpg" alt="Фото вчителя">
-                <div class="teacher-name">Ім'я Прізвище</div>
-                <p>Посада</p>
-            </div>
+            <!-- Громадянська та історична освітня галузь -->
+            <?= displayTeachersByCategory('civil_and_historical', $teachers, $categoryNames) ?>
+
+            <!-- Природнича освітня галузь -->
+            <?= displayTeachersByCategory('natural_sciences', $teachers, $categoryNames) ?>
+
+            <!-- Технічна освітня галузь -->
+            <?= displayTeachersByCategory('technical_sciences', $teachers, $categoryNames) ?>
+
+            <!-- Інформатична освітня галузь -->
+            <?= displayTeachersByCategory('informatics', $teachers, $categoryNames) ?>
+
+            <!-- Соціальна і здоров'язбережувальна галузь -->
+            <?= displayTeachersByCategory('social_and_health', $teachers, $categoryNames) ?>
+
+            <!-- Мистецька освітня галузь -->
+            <?= displayTeachersByCategory('arts', $teachers, $categoryNames) ?>
+
+            <!-- Фізкультурна освітня галузь -->
+            <?= displayTeachersByCategory('physical_education', $teachers, $categoryNames) ?>
         </div>
     </div>
 
-    <p></p>
 
 
     <!-- Стрілочка повернення на верх сторінки -->
