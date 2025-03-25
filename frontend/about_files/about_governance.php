@@ -1,3 +1,55 @@
+<?php
+require_once '../../backend/config.php';
+
+// Отримуємо всіх співробітників врядування
+$sql = "SELECT * FROM vryaduvannya";
+$result = $pdo->query($sql);
+$vryaduvannya = [];
+if ($result) {
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $vryaduvannya[] = $row;
+    }
+
+    // Мапінг категорій для врядування
+    $categoryNames = [
+        'labor_collective_governance' => 'Органи врядування трудового колективу',
+        'parents_governance' => 'Органи батьківського врядування',
+        'students_governance' => 'Органи учнівського врядування',
+        'ombudsman' => 'Омбудсман'
+    ];
+
+    // Функція для відображення співробітників за категоріями
+    function displayVryaduvannyaByCategory($category, $vryaduvannya, $categoryNames)
+    {
+        $filteredVryaduvannya = array_filter($vryaduvannya, function ($member) use ($category) {
+            return $member[$category] == 1;
+        });
+
+        if (empty($filteredVryaduvannya)) {
+            return '';
+        }
+
+        // Отримуємо назву категорії на українській мові
+        $categoryTitle = isset($categoryNames[$category]) ? $categoryNames[$category] : ucfirst(str_replace('_', ' ', $category));
+
+        $html = "<h2 class='teachers-subtitle'>" . htmlspecialchars($categoryTitle) . "</h2>";
+        $html .= "<div class='teachers-grid'>";
+
+        foreach ($filteredVryaduvannya as $member) {
+            $html .= "<div class='teacher-card'>
+                    <img src='" . htmlspecialchars($member['photo_path']) . "' alt='Фото співробітника'>
+                    <div class='teacher-name'>" . htmlspecialchars($member['full_name']) . "</div>
+                    <p>" . htmlspecialchars($member['position']) . "</p>
+                  </div>";
+        }
+
+        $html .= "</div>";
+        return $html;
+    } // Закриваюча дужка для функції
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="uk">
 
@@ -8,15 +60,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <script src="blickFixer.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../blickFixer.js"></script>
 </head>
 
 <body>
+    <!-- Основна навігаційна панель -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="../assets/images/Logo_v2.svg" alt="Логотип" width="96" height="48" class="rounded">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../../assets/images/Logo_v2.svg" alt="Логотип" width="96" height="48" class="rounded">
                 <div class="split-text ms-2 fw-bold">Хотинський опорний <br> академічний ліцей</div>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -30,11 +83,11 @@
                             Про нас
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-                            <li><a class="dropdown-item" href="about_files/about_general.php">Загальна інформація</a>
+                            <li><a class="dropdown-item" href="about_general.php">Загальна інформація</a>
                             </li>
-                            <li><a class="dropdown-item" href="about_files/about_teachers.php">Педагогічний
+                            <li><a class="dropdown-item" href="about_teachers.php">Педагогічний
                                     колектив</a></li>
-                            <li><a class="dropdown-item" href="about_files/about_governance.php">Органи громадського
+                            <li><a class="dropdown-item" href="about_governance.php">Органи громадського
                                     врядування</a></li>
                         </ul>
                     </li>
@@ -45,15 +98,15 @@
                             Учасникам освітнього процесу
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="participantsDropdown">
-                            <li><a class="dropdown-item" href="forTeacher.php">Педагогічним працівникам</a></li>
-                            <li><a class="dropdown-item" href="forParents.php">Батькам</a></li>
-                            <li><a class="dropdown-item" href="forStudents.php">Здобувачам освіти</a></li>
+                            <li><a class="dropdown-item" href="../forTeacher.php">Педагогічним працівникам</a></li>
+                            <li><a class="dropdown-item" href="../forParents.php">Батькам</a></li>
+                            <li><a class="dropdown-item" href="../forStudents.php">Здобувачам освіти</a></li>
                         </ul>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link" href="news.html">Новини</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../news.html">Новини</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="documents.php" id="documentsDropdown" role="button">
+                        <a class="nav-link dropdown-toggle" href="../documents.php" id="documentsDropdown" role="button">
                             Документи
                         </a>
                     </li>
@@ -80,99 +133,24 @@
     </div>
 
 
-    <!-- Основний контент -->
-    <div class="main-content">
-        <div class="container mt-4">
-            <h1 class="fade-in header-values">Ласкаво просимо!</h1>
-            <p class="fade-in header-values">Ми Хотинський опорний акадамічний ліцей</p>
+    <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
+        <div class="teachers-container">
+            <h1 class="teachers-title">Врядування на базі закладу</h1>
 
-            <!-- Місія -->
-            <section class="my-5 fade-in">
-                <h2 class="header-values">Наша місія</h2>
-                <p class="header-values">Будуємо майбутнє сьогодні <br>
-                    Забезпечуємо учням можливості для розвитку їх потенціалу, використовуючи сучасні методи
-                    навчання. Виховуємо самодисципліну та цілеспрямованість до досягнення цілей. Кожен наш учень
-                    успішний! Успіх наших дітей - наш успіх!</p>
-            </section>
+            <!-- Органи врядування трудового колективу -->
+            <?= displayVryaduvannyaByCategory('labor_collective_governance', $vryaduvannya, $categoryNames) ?>
 
-            <!-- Наші цінності -->
-            <h2 class="header-values fade-in">Наші цінності</h2>
+            <!-- Органи батьківського врядування -->
+            <?= displayVryaduvannyaByCategory('parents_governance', $vryaduvannya, $categoryNames) ?>
 
-            <div id="carouselExampleControls" class="carousel slide fade-in" data-bs-ride="carousel"
-                data-bs-interval="9000">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="../assets/images/1.png" class="d-block w-100" alt="Чесність">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/2.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/3.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/4.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/5.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/6.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/7.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/8.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/9.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/10.png" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Наступний</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Попередній</span>
-                </button>
-            </div>
+            <!-- Органи учнівського врядування -->
+            <?= displayVryaduvannyaByCategory('students_governance', $vryaduvannya, $categoryNames) ?>
 
-            <!-- Переваги -->
-            <section class="my-5 fade-in">
-                <h2 class="header-values">Наші переваги</h2>
-                <div class="row">
-                    <div class="col-md-4">
-                        <h4>СЕРЕДОВИЩЕ</h4>
-                        <p>сучасна інфраструктура, зручне розташування, укриття, обладнані технологіями класні
-                            аудиторії, сучасна їдальня, зручний спортивний майданчик
-                        </p>
-                    </div>
-                    <div class="col-md-4">
-                        <h4>ОСВІТА</h4>
-                        <p>широкий спектр дисциплін, підсилення, профілізація предметів та учителі-новатори, що
-                            допомагають розвивати креативність, логічне мислення й творчий потенціал дитини </p>
-                    </div>
-                    <div class="col-md-4">
-                        <h4>ЗАЛУЧЕНІСТЬ</h4>
-                        <p>учні, їхні батьки та учителі є рівноправними учасниками освітнього процесу, які
-                            спільно беруть участь у його плануванні, організації, удосконаленні та впровадженні
-                            різних освітніх ініціатив.</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <div class="news-container">
-            <!-- Тут будуть динамічно додаватися новини -->
+            <!-- Омбудсман -->
+            <?= displayVryaduvannyaByCategory('ombudsman', $vryaduvannya, $categoryNames) ?>
         </div>
     </div>
+
 
 
     <!-- Стрілочка повернення на верх сторінки -->
@@ -180,29 +158,28 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
-
-
     <!-- Футер -->
     <footer class="footer bg-dark text-white py-4">
         <div class="container">
-            <div class="supconteiner row text-center text-md-start">
-                <div class="col-12 col-md-6 mb-4">
+            <div class="supconteiner d-flex justify-content-around">
+                <div class="col-md-6">
                     <h5>Контакти</h5>
                     <ul class="list-unstyled">
                         <li>
                             <i class="fas fa-map-marker-alt me-2"></i>
                             <span class="map-link"
-                                data-address="вулиця Івана Франка, 8, Хотин, Чернівецька область, 60000"
-                                tabindex="0">Місто Хотин, вулиця Франка І. 8/А</span>
+                                data-address="вулиця Івана Франка, 8, Хотин, Чернівецька область, 60000">Місто Хотин,
+                                вулиця Франка
+                                І. 8/А</span>
                         </li>
                         <li>
                             <i class="fas fa-envelope me-2"></i>
-                            <span class="copy-text" data-copy="khotynacademiclyceum@gmail.com"
-                                tabindex="0">khotynacademiclyceum@gmail.com</span>
+                            <span class="copy-text"
+                                data-copy="khotynacademiclyceum@gmail.com">khotynacademiclyceum@gmail.com</span>
                         </li>
                         <li>
                             <i class="fas fa-phone me-2"></i>
-                            <span class="copy-text" data-copy="+380660107072" tabindex="0">+380 660 107 072</span>
+                            <span class="copy-text" data-copy="+380660107072">+380 660 107 072</span>
                             <br> Директорка закладу Людмила Микитюк
                         </li>
                     </ul>
@@ -211,27 +188,26 @@
                     </button>
                 </div>
 
-                <div class="col-12 col-md-6 mb-4">
+                <div class="col-md-6">
                     <h5>Графік роботи</h5>
                     <ul class="list-unstyled">
                         <li>Понеділок - П'ятниця: 8:00 - 18:15</li>
                         <li>Субота - Неділя: Вихідні</li>
                     </ul>
                 </div>
-
-                <div class="col-12 col-md-6">
+                <div class="col-md-6">
                     <h5>Соціальні мережі</h5>
                     <ul class="list-unstyled">
                         <li><a href="https://www.facebook.com/khotynacademiclyceum?locale=uk_UA"
                                 class="text-white text-decoration-none social-link"><i
                                     class="fab fa-facebook me-2"></i>Facebook</a></li>
-                        <li><a href="https://www.instagram.com/leaders_khotynacademiclyceum"
+                        <li><a href="https://www.instagram.com/leaders_khotynacademiclyceum?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                                 class="text-white text-decoration-none social-link"><i
                                     class="fab fa-instagram me-2"></i>Instagram</a></li>
-                        <li><a href="https://www.tiktok.com/@leaders_khotynozzso"
+                        <li><a href="https://www.tiktok.com/@leaders_khotynozzso?is_from_webapp=1&sender_device=pc"
                                 class="text-white text-decoration-none social-link"><i
-                                    class="fab fa-tiktok me-2"></i>TikTok</a></li>
-                        <li><a href="https://www.youtube.com/@%D0%A5%D0%BE%D1%82%D0%B8%D0%BD%D1%81%D1%8C%D0%BA%D0%B8%D0%B9"
+                                    class="fab fa-tiktok me-2"></i>Tik Tok</a></li>
+                        <li><a href="https://www.youtube.com/@%D0%A5%D0%BE%D1%82%D0%B8%D0%BD%D1%81%D1%8C%D0%BA%D0%B8%D0%B9%D0%BE%D0%BF%D0%BE%D1%80%D0%BD%D0%B8%D0%B9%D0%B0%D0%BA%D0%B0%D0%B4%D0%B5%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%B9%D0%BB%D1%96"
                                 class="text-white text-decoration-none social-link"><i
                                     class="fab fa-youtube me-2"></i>YouTube</a></li>
                     </ul>
@@ -239,7 +215,6 @@
             </div>
         </div>
     </footer>
-
 
 
 
@@ -282,8 +257,9 @@
         </div>
     </div>
 
-    <script src="index_news.js"></script>
-    <script src="scripts.js"></script>
+
+    <script src="../scripts.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 

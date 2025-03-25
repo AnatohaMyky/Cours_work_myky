@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const html = document.documentElement; // Змінюємо body на html
 
     function updateThemeIcon(isDark) {
-        themeToggleBtn.textContent = isDark ? "🌙" : "☀️";
+        themeToggleBtn.textContent = isDark ? "🌙 Змінити тему" : "☀️ Змінити тему";
     }
 
     // Перевіряємо стан теми при завантаженні
@@ -166,23 +166,14 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentPage = 1;
     const itemsPerPage = 4;
 
-    // Функція для форматування дати
     function formatDate(dateString) {
-        const date = new Date(dateString);
-        const year = date.getFullYear();
-        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // додаємо нуль перед місяцем
-        const day = date.getDate().toString().padStart(2, '0'); // додаємо нуль перед числом
-        return `${year}-${month}-${day}`;
+        return dateString.split("T")[0]; // Відрізаємо час, залишаючи тільки "YYYY-MM-DD"
     }
 
     function displayNews() {
         if (!newsContainer) return;
 
-        // Сортуємо новини по id від новіших до старіших
-        const sortedNews = newsData.sort((a, b) => b.id - a.id);
-
-        // Обмежуємо кількість новин до 40
-        const limitedNews = sortedNews.slice(0, 40);
+        const limitedNews = newsData.slice(0, 40); // Лише 40 новин
 
         newsContainer.innerHTML = "";
         let start = (currentPage - 1) * itemsPerPage;
@@ -190,12 +181,9 @@ document.addEventListener("DOMContentLoaded", function () {
         let paginatedNews = limitedNews.slice(start, end);
 
         paginatedNews.forEach(news => {
-            console.log(news);
             const shortDescription = news.description.length > 150
                 ? news.description.substring(0, 150) + "..."
                 : news.description;
-
-            // Форматування дати
             const formattedDate = formatDate(news.date);
 
             const newsItem = `
@@ -205,24 +193,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                     <div class="news-content ps-md-3">
                         <h3 class="news-title">
-                            <a href="${news.link}" class="news-link">${news.title}</a>
+                            <a href="news_details.html?id=${news.id}" class="news-link">${news.title}</a>
                         </h3>
                         <p class="news-meta">
-                            <i class="fa fa-calendar"></i> ${formattedDate} <!-- Виведення відформатованої дати -->
+                            <i class="fa fa-calendar"></i> ${formattedDate}
                             <span class="news-category"><i class="fa fa-bookmark"></i> ${news.category}</span>
                         </p>
-                        <p class="news-description">${shortDescription}</p>
-                        <a href="news_details.html?id=${news.id}" class="news-read-more">Читати далі ></a>
+                            <p class="news-description">${shortDescription}</p>
+                            <a href="${news.social_link}" class="news-read-more" target="_blank">Читати далі ></a>
                     </div>
                 </div>
             `;
             newsContainer.innerHTML += newsItem;
         });
-
-        if (!pageNumbersContainer) {
-            console.error("Контейнер пагінації не знайдено!");
-            return;
-        }
 
         const totalPages = Math.ceil(limitedNews.length / itemsPerPage);
         let pagination = '';
@@ -257,17 +240,18 @@ document.addEventListener("DOMContentLoaded", function () {
         if (prevButton) prevButton.parentElement.classList.toggle("disabled", currentPage === 1);
         if (nextButton) nextButton.parentElement.classList.toggle("disabled", currentPage === totalPages);
     }
-
-    fetch('http://localhost:3000/api/news')
+    fetch("../backend/fetch_news.php")
         .then(response => response.json())
         .then(data => {
-            console.log("Отримані новини:", data);
-            if (!Array.isArray(data)) {
-                console.error("Помилка: API повернуло не масив.");
-                return;
-            }
             newsData = data;
             displayNews();
         })
-        .catch(error => console.error('Помилка завантаження новин:', error));
+        .catch(error => console.error("Помилка завантаження новин:", error));
+
+
+    document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("news-read-more")) {
+            sessionStorage.setItem("previousPage", window.location.href);
+        }
+    });
 });

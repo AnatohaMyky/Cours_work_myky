@@ -1,3 +1,16 @@
+<?php
+require_once '../backend/config.php';
+
+$sql = "SELECT * FROM documents_for_participants WHERE for_students = 1";
+$result = $pdo->query($sql);
+$documents = [];
+if ($result) {
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $documents[] = $row;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="uk">
 
@@ -13,6 +26,7 @@
 </head>
 
 <body>
+    <!-- Основна навігаційна панель -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -79,100 +93,29 @@
         </div>
     </div>
 
+    <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
+        <!-- Фільтр документів -->
+        <h1 style="text-align: center; color:var(--color)">Документи для вчителів</h1>
 
-    <!-- Основний контент -->
-    <div class="main-content">
-        <div class="container mt-4">
-            <h1 class="fade-in header-values">Ласкаво просимо!</h1>
-            <p class="fade-in header-values">Ми Хотинський опорний акадамічний ліцей</p>
-
-            <!-- Місія -->
-            <section class="my-5 fade-in">
-                <h2 class="header-values">Наша місія</h2>
-                <p class="header-values">Будуємо майбутнє сьогодні <br>
-                    Забезпечуємо учням можливості для розвитку їх потенціалу, використовуючи сучасні методи
-                    навчання. Виховуємо самодисципліну та цілеспрямованість до досягнення цілей. Кожен наш учень
-                    успішний! Успіх наших дітей - наш успіх!</p>
-            </section>
-
-            <!-- Наші цінності -->
-            <h2 class="header-values fade-in">Наші цінності</h2>
-
-            <div id="carouselExampleControls" class="carousel slide fade-in" data-bs-ride="carousel"
-                data-bs-interval="9000">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="../assets/images/1.png" class="d-block w-100" alt="Чесність">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/2.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/3.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/4.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/5.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/6.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/7.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/8.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/9.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../assets/images/10.png" class="d-block w-100" alt="...">
-                    </div>
+        <?php if (empty($documents)): ?>
+            <p>Немає документів для вчителів.</p>
+        <?php else: ?>
+            <div class="row">
+                <div class="documents-container">
+                    <?php foreach ($documents as $document): ?>
+                        <div class="document-card">
+                            <img src="../assets/images/document_icon.png" alt="Документ" class="document-icon">
+                            <div class="document-content">
+                                <h5 class="document-title"><?= htmlspecialchars($document['document_name']) ?></h5>
+                                <a href="<?= htmlspecialchars($document['google_drive_link']) ?>" target="_blank" class="document-button">Переглянути</a>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Наступний</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Попередній</span>
-                </button>
+            <?php endif; ?>
             </div>
-
-            <!-- Переваги -->
-            <section class="my-5 fade-in">
-                <h2 class="header-values">Наші переваги</h2>
-                <div class="row">
-                    <div class="col-md-4">
-                        <h4>СЕРЕДОВИЩЕ</h4>
-                        <p>сучасна інфраструктура, зручне розташування, укриття, обладнані технологіями класні
-                            аудиторії, сучасна їдальня, зручний спортивний майданчик
-                        </p>
-                    </div>
-                    <div class="col-md-4">
-                        <h4>ОСВІТА</h4>
-                        <p>широкий спектр дисциплін, підсилення, профілізація предметів та учителі-новатори, що
-                            допомагають розвивати креативність, логічне мислення й творчий потенціал дитини </p>
-                    </div>
-                    <div class="col-md-4">
-                        <h4>ЗАЛУЧЕНІСТЬ</h4>
-                        <p>учні, їхні батьки та учителі є рівноправними учасниками освітнього процесу, які
-                            спільно беруть участь у його плануванні, організації, удосконаленні та впровадженні
-                            різних освітніх ініціатив.</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <div class="news-container">
-            <!-- Тут будуть динамічно додаватися новини -->
-        </div>
     </div>
+
 
 
     <!-- Стрілочка повернення на верх сторінки -->
@@ -180,29 +123,28 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
-
-
     <!-- Футер -->
     <footer class="footer bg-dark text-white py-4">
         <div class="container">
-            <div class="supconteiner row text-center text-md-start">
-                <div class="col-12 col-md-6 mb-4">
+            <div class="supconteiner d-flex justify-content-around">
+                <div class="col-md-6">
                     <h5>Контакти</h5>
                     <ul class="list-unstyled">
                         <li>
                             <i class="fas fa-map-marker-alt me-2"></i>
                             <span class="map-link"
-                                data-address="вулиця Івана Франка, 8, Хотин, Чернівецька область, 60000"
-                                tabindex="0">Місто Хотин, вулиця Франка І. 8/А</span>
+                                data-address="вулиця Івана Франка, 8, Хотин, Чернівецька область, 60000">Місто Хотин,
+                                вулиця Франка
+                                І. 8/А</span>
                         </li>
                         <li>
                             <i class="fas fa-envelope me-2"></i>
-                            <span class="copy-text" data-copy="khotynacademiclyceum@gmail.com"
-                                tabindex="0">khotynacademiclyceum@gmail.com</span>
+                            <span class="copy-text"
+                                data-copy="khotynacademiclyceum@gmail.com">khotynacademiclyceum@gmail.com</span>
                         </li>
                         <li>
                             <i class="fas fa-phone me-2"></i>
-                            <span class="copy-text" data-copy="+380660107072" tabindex="0">+380 660 107 072</span>
+                            <span class="copy-text" data-copy="+380660107072">+380 660 107 072</span>
                             <br> Директорка закладу Людмила Микитюк
                         </li>
                     </ul>
@@ -211,27 +153,26 @@
                     </button>
                 </div>
 
-                <div class="col-12 col-md-6 mb-4">
+                <div class="col-md-6">
                     <h5>Графік роботи</h5>
                     <ul class="list-unstyled">
                         <li>Понеділок - П'ятниця: 8:00 - 18:15</li>
                         <li>Субота - Неділя: Вихідні</li>
                     </ul>
                 </div>
-
-                <div class="col-12 col-md-6">
+                <div class="col-md-6">
                     <h5>Соціальні мережі</h5>
                     <ul class="list-unstyled">
                         <li><a href="https://www.facebook.com/khotynacademiclyceum?locale=uk_UA"
                                 class="text-white text-decoration-none social-link"><i
                                     class="fab fa-facebook me-2"></i>Facebook</a></li>
-                        <li><a href="https://www.instagram.com/leaders_khotynacademiclyceum"
+                        <li><a href="https://www.instagram.com/leaders_khotynacademiclyceum?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                                 class="text-white text-decoration-none social-link"><i
                                     class="fab fa-instagram me-2"></i>Instagram</a></li>
-                        <li><a href="https://www.tiktok.com/@leaders_khotynozzso"
+                        <li><a href="https://www.tiktok.com/@leaders_khotynozzso?is_from_webapp=1&sender_device=pc"
                                 class="text-white text-decoration-none social-link"><i
-                                    class="fab fa-tiktok me-2"></i>TikTok</a></li>
-                        <li><a href="https://www.youtube.com/@%D0%A5%D0%BE%D1%82%D0%B8%D0%BD%D1%81%D1%8C%D0%BA%D0%B8%D0%B9"
+                                    class="fab fa-tiktok me-2"></i>Tik Tok</a></li>
+                        <li><a href="https://www.youtube.com/@%D0%A5%D0%BE%D1%82%D0%B8%D0%BD%D1%81%D1%8C%D0%BA%D0%B8%D0%B9%D0%BE%D0%BF%D0%BE%D1%80%D0%BD%D0%B8%D0%B9%D0%B0%D0%BA%D0%B0%D0%B4%D0%B5%D0%BC%D1%96%D1%87%D0%BD%D0%B8%D0%B9%D0%BB%D1%96"
                                 class="text-white text-decoration-none social-link"><i
                                     class="fab fa-youtube me-2"></i>YouTube</a></li>
                     </ul>
@@ -239,7 +180,6 @@
             </div>
         </div>
     </footer>
-
 
 
 
@@ -282,8 +222,9 @@
         </div>
     </div>
 
-    <script src="index_news.js"></script>
+
     <script src="scripts.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
