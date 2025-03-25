@@ -1301,37 +1301,72 @@ ul {
 }
 
 /* Стилізація для сторінки вчителів */
+/* Контейнер для карток */
+.documents-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* автоматично визначається кількість колонок */
+    gap: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-.card {
-    border: none;
+/* Окрема картка документа */
+.document-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--section-bg);
+    padding: 20px;
     border-radius: 10px;
-    overflow: hidden;
-    background-color: var(--section-bg);
     box-shadow: 0 4px 6px var(--box-shadow);
+    transition: transform 0.3s ease;
+    text-align: center;
 }
 
-.card-title {
-    font-weight: bold;
-    font-size: 1.2rem;
+/* Ефект при наведенні */
+.document-card:hover {
+    transform: scale(1.05);
+}
+
+/* Іконка документа */
+.document-icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 15px;
+}
+
+/* Контент документа */
+.document-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Назва документа */
+.document-title {
+    margin: 0 0 10px;
+    font-size: 18px;
     color: var(--color);
 }
 
-.card-body {
-    padding: 1rem;
-    color: var(--color);
+/* Кнопка */
+.document-button {
+    padding: 8px 12px;
+    background: var(--button-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
 }
 
-.card img {
-    max-width: 60%;
-    height: auto;
+.document-button:hover {
+    background: var(--button-color-hover);
 }
 
-.card .btn {
-    background-color: var(--button-color);
-    border-color: var(--button-color);
-}
-
-.card .btn:hover {
-    background-color: var(--button-color-hover);
-    border-color: var(--button-color-hover);
+/* Адаптація для телефонів */
+@media (max-width: 768px) {
+    .documents-container {
+        grid-template-columns: 1fr; /* 1 колонка на мобільних */
+    }
 }

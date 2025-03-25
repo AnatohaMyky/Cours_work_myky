@@ -54,14 +54,14 @@ if ($result) {
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="forParticipants.html" id="participantsDropdown"
+                        <a class="nav-link dropdown-toggle" href="#" id="participantsDropdown"
                             role="button">
                             Учасникам освітнього процесу
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="participantsDropdown">
-                            <li><a class="dropdown-item" href="#">Педагогічним працівникам</a></li>
-                            <li><a class="dropdown-item" href="#">Батькам</a></li>
-                            <li><a class="dropdown-item" href="#">Здобувачам освіти</a></li>
+                            <li><a class="dropdown-item" href="forTeacher.php">Педагогічним працівникам</a></li>
+                            <li><a class="dropdown-item" href="forParents.php">Батькам</a></li>
+                            <li><a class="dropdown-item" href="forStudents.php">Здобувачам освіти</a></li>
                         </ul>
                     </li>
 
@@ -93,34 +93,30 @@ if ($result) {
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
         <!-- Фільтр документів -->
-        <h1 style="text-align: center; color:var(--color)">Документи для батьків</h1>
+        <h1 style="text-align: center; color:var(--color)">Документи для вчителів</h1>
 
         <?php if (empty($documents)): ?>
-            <p>Немає документів для батьків.</p>
+            <p>Немає документів для вчителів.</p>
         <?php else: ?>
             <div class="row">
-                <?php foreach ($documents as $document): ?>
-                    <div class="col-md-4 mb-3">
-                        <div class="card shadow-sm">
-                            <div class="row no-gutters">
-                                <div class="col-4 d-flex align-items-center justify-content-center">
-                                    <img src="path/to/your/icon.png" class="img-fluid" alt="Документ">
-                                </div>
-                                <div class="col-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= htmlspecialchars($document['document_name']) ?></h5>
-                                        <a href="<?= htmlspecialchars($document['google_drive_link']) ?>" target="_blank" class="btn btn-primary">Переглянути</a>
-                                    </div>
-                                </div>
+                <div class="documents-container">
+                    <?php foreach ($documents as $document): ?>
+                        <div class="document-card">
+                            <img src="../assets/images/document_icon.png" alt="Документ" class="document-icon">
+                            <div class="document-content">
+                                <h5 class="document-title"><?= htmlspecialchars($document['document_name']) ?></h5>
+                                <a href="<?= htmlspecialchars($document['google_drive_link']) ?>" target="_blank" class="document-button">Переглянути</a>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
             </div>
-        <?php endif; ?>
     </div>
+
+
 
     <!-- Стрілочка повернення на верх сторінки -->
     <a href="#" class="back-to-top">
