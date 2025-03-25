@@ -95,7 +95,7 @@ if ($result) {
 
     <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
         <!-- Фільтр документів -->
-        <h1 style="text-align: center; color:var(--color)">Документи для вчителів</h1>
+        <h1 style="text-align: center; color:var(--color)">Документи для батьків</h1>
 
         <?php if (empty($documents)): ?>
             <p>Немає документів для вчителів.</p>
