@@ -104,7 +104,7 @@ if ($result) {
                 <div class="documents-container">
                     <?php foreach ($documents as $document): ?>
                         <div class="document-card">
-                            <img src="../assets/images/document_icon.png" alt="Документ" class="document-icon">
+                            <img src="../assets/images/document_icon2.png" alt="Документ" class="document-icon">
                             <div class="document-content">
                                 <h5 class="document-title"><?= htmlspecialchars($document['document_name']) ?></h5>
                                 <a href="<?= htmlspecialchars($document['google_drive_link']) ?>" target="_blank" class="document-button">Переглянути</a>

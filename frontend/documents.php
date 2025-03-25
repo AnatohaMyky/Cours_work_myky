@@ -95,7 +95,7 @@ if ($result) {
 
     <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
         <!-- Фільтр документів -->
-        <h1 style="text-align: center; color:var(--color)">Документи для вчителів</h1>
+        <h1 style="text-align: center; color:var(--color)">Установчі документи</h1>
 
         <?php if (empty($documents)): ?>
             <p>Немає документів.</p>
@@ -104,7 +104,7 @@ if ($result) {
                 <div class="documents-container">
                     <?php foreach ($documents as $document): ?>
                         <div class="document-card">
-                            <img src="../assets/images/document_icon.png" alt="Документ" class="document-icon">
+                            <img src="../assets/images/document_icon2.png" alt="Документ" class="document-icon">
                             <div class="document-content">
                                 <h5 class="document-title"><?= htmlspecialchars($document['title']) ?></h5>
                                 <a href="<?= htmlspecialchars($document['google_drive_link']) ?>" target="_blank" class="document-button">Переглянути</a>
