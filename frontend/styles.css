@@ -1260,7 +1260,7 @@ ul {
 }
 
 .teacher-card {
-    background: #333;
+    background: var(--section-bg);
     padding: 15px;
     border-radius: 10px;
 }
@@ -1304,7 +1304,8 @@ ul {
 /* Контейнер для карток */
 .documents-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* автоматично визначається кількість колонок */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    /* автоматично визначається кількість колонок */
     gap: 20px;
     justify-content: center;
     max-width: 1200px;
@@ -1367,6 +1368,83 @@ ul {
 /* Адаптація для телефонів */
 @media (max-width: 768px) {
     .documents-container {
-        grid-template-columns: 1fr; /* 1 колонка на мобільних */
+        grid-template-columns: 1fr;
+        /* 1 колонка на мобільних */
     }
+}
+
+
+.general-content {
+    background-color: var(--background-color) !important;
+    padding: 30px !important;
+}
+
+.general-content .container {
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+    background: var(--background-color) !important;
+    padding: 25px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.general-content h1 {
+    text-align: center !important;
+    font-size: 30px !important;
+    font-weight: bold !important;
+    color: var(--color) !important;
+    margin-bottom: 25px !important;
+}
+
+.general-content h2 {
+    font-size: 24px !important;
+    font-weight: bold !important;
+    color: var(--color) !important;
+    border-bottom: 2px solid #2980b9 !important;
+    padding-bottom: 5px !important;
+    margin-top: 25px !important;
+}
+
+.general-content h3 {
+    font-size: 20px !important;
+    font-weight: bold !important;
+    color: var(--color) !important;
+    margin-top: 15px !important;
+}
+
+.general-content p {
+    font-size: 18px !important;
+    color: var(--color) !important;
+    line-height: 1.6 !important;
+    margin-top: 10px !important;
+}
+
+.general-content ul {
+    list-style-type: disc !important;
+    padding-left: 30px !important;
+    margin-top: 10px !important;
+}
+
+.general-content ul li {
+    font-size: 18px !important;
+    color: var(--color) !important;
+    margin-bottom: 5px !important;
+}
+
+.general-content ul ul {
+    list-style-type: circle !important;
+    padding-left: 20px !important;
+}
+
+.general-content sup {
+    font-size: 14px !important;
+}
+
+.general-content img {
+    display: block !important;
+    max-width: 100% !important;
+    height: auto !important;
+    margin: 15px auto !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
 }
