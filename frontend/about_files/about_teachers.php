@@ -89,7 +89,7 @@ function displayTeachersByCategory($category, $teachers, $categoryNames)
                             Про нас
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-                            <li><a class="dropdown-item" href="about_general.php">Загальна інформація</a>
+                            <li><a class="dropdown-item" href="about_general.html">Загальна інформація</a>
                             </li>
                             <li><a class="dropdown-item" href="about_teachers.php">Педагогічний
                                     колектив</a></li>
@@ -110,12 +110,12 @@ function displayTeachersByCategory($category, $teachers, $categoryNames)
                         </ul>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link" href="../news.html">Новини</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="../documents.php" id="documentsDropdown" role="button">
                             Документи
                         </a>
                     </li>
+                    <li class="nav-item"><a class="nav-link" href="../news.html">Новини</a></li>
 
                     <!-- Кнопка для відкриття другого рівня навігації -->
                     <li class="nav-item">
