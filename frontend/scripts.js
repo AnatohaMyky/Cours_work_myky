@@ -193,7 +193,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                     <div class="news-content ps-md-3">
                         <h3 class="news-title">
-                            <a href="news_details.html?id=${news.id}" class="news-link">${news.title}</a>
                         </h3>
                         <p class="news-meta">
                             <i class="fa fa-calendar"></i> ${formattedDate}
