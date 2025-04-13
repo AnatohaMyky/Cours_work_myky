@@ -1,7 +1,7 @@
 <?php
 require_once '../backend/config.php';
 
-$sql = "SELECT * FROM documents_for_participants WHERE for_parents = 1";
+$sql = "SELECT * FROM documents_for_participants WHERE for_students = 1";
 $result = $pdo->query($sql);
 $documents = [];
 if ($result) {
@@ -59,9 +59,9 @@ if ($result) {
                             Учасникам освітнього процесу
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="participantsDropdown">
-                            <li><a class="dropdown-item" href="forTeacher.php">Педагогічним працівникам</a></li>
-                            <li><a class="dropdown-item" href="forParents.php">Батькам</a></li>
-                            <li><a class="dropdown-item" href="forStudents.php">Здобувачам освіти</a></li>
+                        <li><a class="dropdown-item" href="for_teacher.php">Педагогічним працівникам</a></li>
+                            <li><a class="dropdown-item" href="for_parents.php">Батькам</a></li>
+                            <li><a class="dropdown-item" href="for_students.php">Здобувачам освіти</a></li>
                         </ul>
                     </li>
 
@@ -95,7 +95,7 @@ if ($result) {
 
     <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
         <!-- Фільтр документів -->
-        <h1 style="text-align: center; color:var(--color)">Документи для батьків</h1>
+        <h1 style="text-align: center; color:var(--color)">Документи для здобувачів освіти</h1>
 
         <?php if (empty($documents)): ?>
             <p>Немає документів для вчителів.</p>

@@ -91,6 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$blocked) {
         <p>Форма входу тимчасово заблокована через надто багато невдалих спроб.</p>
     <?php endif; ?>
 
-    <button onclick="window.location.href='../frontend/forTeacher.html';">Назад</button>
+    <button onclick="window.location.href='../frontend/for_teacher.html';">Назад</button>
 </body>
 </html>

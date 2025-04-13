@@ -104,9 +104,9 @@ function displayTeachersByCategory($category, $teachers, $categoryNames)
                             Учасникам освітнього процесу
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="participantsDropdown">
-                            <li><a class="dropdown-item" href="../forTeacher.php">Педагогічним працівникам</a></li>
-                            <li><a class="dropdown-item" href="../forParents.php">Батькам</a></li>
-                            <li><a class="dropdown-item" href="../forStudents.php">Здобувачам освіти</a></li>
+                            <li><a class="dropdown-item" href="../for_teacher.php">Педагогічним працівникам</a></li>
+                            <li><a class="dropdown-item" href="../for_parents.php">Батькам</a></li>
+                            <li><a class="dropdown-item" href="../for_students.php">Здобувачам освіти</a></li>
                         </ul>
                     </li>
 
