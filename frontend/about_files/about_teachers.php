@@ -67,7 +67,6 @@ function displayTeachersByCategory($category, $teachers, $categoryNames)
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../lalala.css">
-    <script src="../blickFixer.js"></script>
 </head>
 
 <body>
@@ -284,7 +283,7 @@ function displayTeachersByCategory($category, $teachers, $categoryNames)
     </div>
 
 
-    <script src="../scripts.js"></script>
+    <script src="../../backend/scripts.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
